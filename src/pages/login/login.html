@@ -1,24 +1,46 @@
 <ion-header>
     <ion-title style="text-align: center;">
             <font face="Courier New">
-                Services
+                Stelcoin*
             </font>
     </ion-title>
   </ion-header>
   
-<ion-content padding>
+  <ion-content padding>
+  
+    <ion-list>
+            <div text-center class="row" >
+                    <div class="col" >
+        <ion-item>
+            <ion-label text-center fixed>Email</ion-label>
+            <ion-input type="email" [(ngModel)]="userEmail"></ion-input>
+        </ion-item>
+        </div>
+        </div>
 
-<ion-list>
-    <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="email" [(ngModel)]="userEmail"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="userPass"></ion-input>
-    </ion-item>
+        <div  class="row" >
+                <div  class="col" >
+        <ion-item>
+            <ion-label text-center fixed>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="userPass"></ion-input>
+        </ion-item>
+        </div>
+    </div>
+        
     </ion-list>
-    <button ion-button (click)="runAuthen()">Login</button>
-    <button ion-button (click)="navCreatePage()">Create Account</button>
-</ion-content>
+
+    <div text-center class="row" >
+            <div class="col" >
+                    <button ion-button (click)="runAuthen()" round>Login</button>
+            </div>
+            
+        </div>
+    <div text-center class="row">
+     
+            <div class="col">
+                    <button text-center ion-button (click)="navCreatePage()" round outline>Create Account</button>
+            </div>
+    </div>
+    
+  </ion-content>
   
