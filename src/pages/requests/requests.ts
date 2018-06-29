@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 
@@ -24,7 +24,7 @@ export class RequestsPage {
   }
   logform(){
     this.storage.get('walletKey').then((key)=>{
-      firebase.database().ref('users/'+ key + '/posts').push({
+      firebase.database().ref('requests/'+ key).push({
         title: this.request.value.title,
         cost: parseInt(this.request.value.cost)
       });

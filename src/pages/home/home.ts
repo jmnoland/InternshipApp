@@ -17,7 +17,7 @@ import { RequestsPage } from '../requests/requests';
 export class HomePage {
   userList: Observable<any[]>;
   postList: Observable<any[]>;
-  userInfo = {};
+  reqInfo = {};
   currentUser;
 
   @ViewChild("viewPosts", { read: ViewContainerRef }) postCont;
@@ -28,14 +28,34 @@ export class HomePage {
               private resolver: ComponentFactoryResolver,
               private storage: Storage) {
 
-    firebase.database().ref('users').once('value',(userData)=>{
-      let temp = Object.keys(userData.val());
-      this.userInfo = userData.val();
-      let tempList = [];
-      for(let x in temp){
-        tempList.push(temp[x]);
+    // firebase.database().ref('requests').once('value',(reqData)=>{
+    //   if(reqData.val() != null || reqData.val() != undefined){
+    //     let temp = Object.keys(reqData.val());
+    //     this.reqInfo = reqData.val();
+    //     let tempList = [];
+    //     let tempPost = [];
+    //     for(let x in temp){
+    //       tempList.push(temp[x]);
+    //       for (let y in this.reqInfo[temp[x]]){
+    //         tempPost.push(this.reqInfo[temp[x]][y]);
+    //       }
+    //     }
+    //     this.postList = Observable.of(tempPost);
+    //     this.userList = Observable.of(tempList);
+    //   }
+    // });
+
+    firebase.database().ref('requests').once('value',(data)=>{
+      if(data.val() != null || data.val() != undefined){
+        let sortList = data.val();
+        for(let x in sortList){
+          let userPosts = [];
+          userPosts.push(sortList[x]);
+          this.reqInfo[x] = userPosts;
+        }
+        let keyList = Object.keys(this.reqInfo);
+        this.userList = Observable.of(keyList);
       }
-      this.userList = Observable.of(tempList);
     });
     //fetches the balance to display on page
     storage.get('walletKey').then((key)=>{
@@ -59,13 +79,15 @@ export class HomePage {
 
   giveInfo(){
     this.postCont.clear();
-
-    for(let posts in this.userInfo[this.currentUser]['posts']){
-      const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(PostsComponent);
-      this.componentRef = this.postCont.createComponent(factory);
-      this.componentRef.instance.title = this.userInfo[this.currentUser]['posts'][posts].title;
-      this.componentRef.instance.cost = this.userInfo[this.currentUser]['posts'][posts].cost;
-      this.componentRef.instance.userData = this.currentUser;
+    for(let num in this.reqInfo[this.currentUser]){
+      for(let post in this.reqInfo[this.currentUser][num]){
+        const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(PostsComponent);
+        this.componentRef = this.postCont.createComponent(factory);
+        this.componentRef.instance.title = this.reqInfo[this.currentUser][num][post].title;
+        this.componentRef.instance.cost = this.reqInfo[this.currentUser][num][post].cost;
+        this.componentRef.instance.userData = this.currentUser;
+        this.componentRef.instance.reqID = post;
+      }
     }
   }
 

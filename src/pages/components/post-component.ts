@@ -8,15 +8,13 @@ import firebase from 'firebase';
 
 @Component({
     template: `
-    <ion-list no-lines>
+    <ion-list>
         <ion-item id={{userData}}>
-            <h1>Description: {{title}}</h1>
+            <ion-label>{{title}}</ion-label>
+            <ion-label>R {{cost}}</ion-label>
         </ion-item>
         <ion-item>
-            <h1>R {{cost}}</h1>
-        </ion-item>
-        <ion-item>
-            <button block color="danger" (click)="Confirm()" ion-button>Confirm</button>
+            <button block color="danger" id={{reqID}} (click)="Confirm()" ion-button>Confirm</button>
         </ion-item>
     </ion-list>
     `
@@ -25,6 +23,7 @@ export class PostsComponent{
     userData;
     title;
     cost;
+    reqID;
     constructor(public navCtrl: NavController,
                 private httpProvider: HttpProvider,
                 private storage: Storage){
@@ -50,7 +49,6 @@ export class PostsComponent{
                 //fetches balance of current user
                 firebase.database().ref('users/' + key + '/balance').child('balance').once('value',(bal)=>{
                     userBal = bal.val();
-                    console.log(bal.val());
                 }).then(()=>{
                     if((userBal - this.cost) >= 0){
                         firebase.database().ref('users/' + this.userData + '/balance').update({
