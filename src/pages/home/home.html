@@ -1,0 +1,34 @@
+<ion-header >
+  <ion-navbar>
+    <ion-title style="text-align: center;">
+      Stelcoin*
+    </ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="openModal()">
+          <ion-icon name="options"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content scrollbar-y="false;" padding>
+    
+  <h2>
+    <font face="Courier New">
+      Services
+    </font>
+  </h2>
+  <ion-list>
+    <ion-item>
+      <ion-label style="text-align: center;">Item</ion-label>
+      <ion-select [(ngModel)]="currentUser" interface="popover" (ionChange)="giveInfo()">
+          <ion-option *ngFor="let user of userList | async">{{user}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <template #viewPosts></template>
+  </ion-list>
+  
+  <button ion-button (click)="navReqPage()">Make Request</button>
+  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <button ion-button (click)="Logout()">Logout</button>
+</ion-content>

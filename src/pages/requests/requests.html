@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>requests</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <form [formGroup]="request">
+      <ion-item>
+          <ion-label>Title</ion-label>
+          <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>Cost</ion-label>
+          <ion-input type="number" formControlName="cost"></ion-input>
+      </ion-item>
+      <button ion-button (click)='logform()' type="submit" [disabled]="!request.valid">Submit</button>
+    </form>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Add Funds</ion-label>
+        <ion-input type="number" [(ngModel)]="funds"></ion-input>
+      </ion-item>
+      <ion-item button (click)="addFunds()">Submit</ion-item>
+    </ion-list>
+
+</ion-content>
