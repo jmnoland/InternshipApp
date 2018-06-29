@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 
 import { LoginPage } from '../login/login';
 import { RequestsPage } from '../requests/requests';
+import { myAcc } from '../myAccount/myAcc';
 
 @Component({
   selector: 'page-home',
@@ -53,6 +54,10 @@ export class HomePage {
 
   navReqPage(){
     this.navCtrl.push(RequestsPage);
+  }
+
+  navMyAccount(){
+    this.navCtrl.push(myAcc); 
   }
 
 
