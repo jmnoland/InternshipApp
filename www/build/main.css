@@ -25677,3 +25677,24 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-bottom));
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
+
+page-create-account .item.item-input {
+  border: none;
+  position: center;
+  background-color: transparent;
+  width: 65%;
+}
+
+page-home .item.item-input {
+  border: none;
+  position: center;
+  background-color: transparent;
+  width: 65%;
+}
+
+page-login .item.item-input {
+  border: none;
+  position: center;
+  background-color: transparent;
+  width: 65%;
+}
