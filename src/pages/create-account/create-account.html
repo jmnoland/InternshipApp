@@ -1,29 +1,46 @@
 <ion-header>
+<<<<<<< HEAD
 
   <ion-navbar>
     <ion-title> Create Account</ion-title>
   </ion-navbar>
 
+=======
+    <ion-title text-center>Register</ion-title>
+>>>>>>> d369c46ba06d86676e26895c6bf96ddfc4d09f59
 </ion-header>
 
 <ion-content padding>
 
     <ion-list>
         <ion-item>
-            <ion-label floating>Email</ion-label>
+            <ion-label text-center fixed>Email</ion-label>
             <ion-input type="email" [(ngModel)]="userEmail"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label floating>Password</ion-label>
+            <ion-label text-center fixed>Password</ion-label>
             <ion-input type="password" [(ngModel)]="userPass"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label floating>Retype Password</ion-label>
+            <ion-label text-center fixed>Retype Password</ion-label>
             <ion-input type="password" [(ngModel)]="confirmPass"></ion-input>
         </ion-item>
+<<<<<<< HEAD
 
         <button ion-button (click)="CreateAccount()" round outline>Submit</button>
         <!-- <ion-item button (click)="CreateAccount()">Submit</ion-item> -->
+=======
+        <div class="row">
+            <div text-center class="col">
+                <button text-center ion-button  (click)="CreateAccount()" round>
+                    Submit
+                </button>
+            </div>
+        </div>
+        
+>>>>>>> d369c46ba06d86676e26895c6bf96ddfc4d09f59
     </ion-list>
-
 </ion-content>
+<ion-footer text-center>
+    Stelcoin*
+</ion-footer>
