@@ -6,12 +6,12 @@ webpackJsonp([0],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__create_account_create_account__ = __webpack_require__(352);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(43);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -112,8 +112,8 @@ webpackEmptyAsyncContext.id = 167;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_http_http__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -322,9 +322,9 @@ webpackEmptyAsyncContext.id = 216;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateAccountPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -369,7 +369,7 @@ var CreateAccountPage = /** @class */ (function () {
     };
     CreateAccountPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-create-account',template:/*ion-inline-start:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\create-account\create-account.html"*/'<ion-header>\n\n    <ion-title text-center>Register</ion-title>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n    <ion-list>\n\n        <ion-item>\n\n            <ion-label text-center fixed>Email</ion-label>\n\n            <ion-input type="email" [(ngModel)]="userEmail"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label text-center fixed>Password</ion-label>\n\n            <ion-input type="password" [(ngModel)]="userPass"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label text-center fixed>Retype Password</ion-label>\n\n            <ion-input type="password" [(ngModel)]="confirmPass"></ion-input>\n\n        </ion-item>\n\n        <div class="row">\n\n            <div text-center class="col">\n\n                <button text-center ion-button  (click)="CreateAccount()" round>\n\n                    Submit\n\n                </button>\n\n            </div>\n\n        </div>\n\n        \n\n    </ion-list>\n\n</ion-content>\n\n<ion-footer text-center>\n\n    Stelcoin*\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\create-account\create-account.html"*/,
+            selector: 'page-create-account',template:/*ion-inline-start:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\create-account\create-account.html"*/'<ion-header>\n\n    <ion-navbar>\n\n    <ion-title text-center>\n\n        <font face="Courier New">\n\n            Register*\n\n        </font>\n\n    </ion-title>\n\n</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n    <ion-list>\n\n        <ion-item>\n\n            <ion-label text-center fixed>Email</ion-label>\n\n            <ion-input type="email" [(ngModel)]="userEmail"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label text-center fixed>Password</ion-label>\n\n            <ion-input type="password" [(ngModel)]="userPass"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label text-center fixed>Retype Password</ion-label>\n\n            <ion-input type="password" [(ngModel)]="confirmPass"></ion-input>\n\n        </ion-item>\n\n        <div class="row">\n\n            <div text-center class="col">\n\n                <button text-center ion-button  (click)="CreateAccount()" round>\n\n                    Submit\n\n                </button>\n\n            </div>\n\n        </div>\n\n        \n\n    </ion-list>\n\n</ion-content>\n\n<ion-footer text-center>\n\n    Stelcoin*\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\create-account\create-account.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
@@ -388,11 +388,11 @@ var CreateAccountPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RequestsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(43);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -443,7 +443,7 @@ var RequestsPage = /** @class */ (function () {
     };
     RequestsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-requests',template:/*ion-inline-start:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\requests\requests.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>requests</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n    <form [formGroup]="request">\n\n      <ion-item>\n\n          <ion-label>Title</ion-label>\n\n          <ion-input type="text" formControlName="title"></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label>Cost</ion-label>\n\n          <ion-input type="number" formControlName="cost"></ion-input>\n\n      </ion-item>\n\n      <button ion-button (click)=\'logform()\' type="submit" [disabled]="!request.valid">Submit</button>\n\n    </form>\n\n\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label>Add Funds</ion-label>\n\n        <ion-input type="number" [(ngModel)]="funds"></ion-input>\n\n      </ion-item>\n\n      <ion-item button (click)="addFunds()">Submit</ion-item>\n\n    </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\requests\requests.html"*/,
+            selector: 'page-requests',template:/*ion-inline-start:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\requests\requests.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>requests</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n    <form [formGroup]="request">\n\n      <ion-item>\n\n          <ion-label>Title</ion-label>\n\n          <ion-input type="text" formControlName="title"></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label>Cost</ion-label>\n\n          <ion-input type="number" formControlName="cost"></ion-input>\n\n      </ion-item>\n\n      <button ion-button (click)=\'logform()\' type="submit" [disabled]="!request.valid">Submit</button>\n\n    </form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\requests\requests.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
@@ -461,9 +461,82 @@ var RequestsPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return myAcc; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(43);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var myAcc = /** @class */ (function () {
+    function myAcc(navCtrl, navParams, formBuilder, storage) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.formBuilder = formBuilder;
+        this.storage = storage;
+        this.request = this.formBuilder.group({
+            title: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
+            cost: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* Validators */].required],
+        });
+    }
+    myAcc.prototype.logform = function () {
+        var _this = this;
+        this.storage.get('walletKey').then(function (key) {
+            __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref('users/' + key + '/posts').push({
+                title: _this.request.value.title,
+                cost: parseInt(_this.request.value.cost)
+            });
+            _this.request.reset();
+        });
+    };
+    myAcc.prototype.addFunds = function () {
+        var _this = this;
+        this.storage.get('walletKey').then(function (key) {
+            __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref('users/' + key).child('balance').once('value', function (bal) {
+                console.log(bal.val().balance);
+                console.log(_this.funds);
+                __WEBPACK_IMPORTED_MODULE_3_firebase___default.a.database().ref('users/' + key + '/balance').update({
+                    balance: parseInt(bal.val().balance) + parseInt(_this.funds)
+                });
+                _this.funds = '';
+            });
+        });
+    };
+    myAcc = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-myAcc',template:/*ion-inline-start:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\myAccount\myAcc.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title style="text-align: center;">\n\n                <font text-center face="Courier New">\n\n                        My Account*\n\n                </font>\n\n        </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content scrollbar-y="false;" padding>\n\n        <div class="col">\n\n                <div class="col">\n\n                    <ion-item>\n\n                        <ion-label>\n\n                            Wallet\n\n                        </ion-label>\n\n                    </ion-item>\n\n                </div>\n\n            </div>\n\n    <div class="col">\n\n        <ion-list>\n\n                <ion-item>\n\n                  <ion-label>Add Funds</ion-label>\n\n                  <ion-input type="number" [(ngModel)]="funds"></ion-input>\n\n                </ion-item>\n\n        </ion-list>\n\n        \n\n        <button ion-button (click)="addFunds()" round>\n\n            Submit\n\n        </button>\n\n    </div>\n\n            \n\n</ion-content>\n\n\n\n<ion-footer text-center>\n\n        \n\n        Stelcoin*\n\n</ion-footer>'/*ion-inline-end:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\myAccount\myAcc.html"*/
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _d || Object])
+    ], myAcc);
+    return myAcc;
+    var _a, _b, _c, _d;
+}());
+
+//# sourceMappingURL=myAcc.js.map
+
+/***/ }),
+
+/***/ 355:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(360);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -471,31 +544,33 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 359:
+/***/ 360:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_components_post_component__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(409);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(410);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_create_account_create_account__ = __webpack_require__(352);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_requests_requests__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_http_http__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common_http__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_storage__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_myAccount_myAcc__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_http_http__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_common_http__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_storage__ = __webpack_require__(43);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -520,20 +595,22 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_create_account_create_account__["a" /* CreateAccountPage */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_myAccount_myAcc__["a" /* myAcc */],
                 __WEBPACK_IMPORTED_MODULE_8__pages_requests_requests__["a" /* RequestsPage */],
                 __WEBPACK_IMPORTED_MODULE_0__pages_components_post_component__["a" /* PostsComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_12__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_13__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {}, {
                     links: []
                 }),
-                __WEBPACK_IMPORTED_MODULE_13__ionic_storage__["a" /* IonicStorageModule */].forRoot()
+                __WEBPACK_IMPORTED_MODULE_14__ionic_storage__["a" /* IonicStorageModule */].forRoot()
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_9__pages_myAccount_myAcc__["a" /* myAcc */],
                 __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_create_account_create_account__["a" /* CreateAccountPage */],
                 __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */],
@@ -541,10 +618,10 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_0__pages_components_post_component__["a" /* PostsComponent */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_11__ionic_native_splash_screen__["a" /* SplashScreen */],
                 { provide: __WEBPACK_IMPORTED_MODULE_2__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* IonicErrorHandler */] },
-                __WEBPACK_IMPORTED_MODULE_11__providers_http_http__["a" /* HttpProvider */]
+                __WEBPACK_IMPORTED_MODULE_12__providers_http_http__["a" /* HttpProvider */]
             ]
         })
     ], AppModule);
@@ -555,13 +632,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 409:
+/***/ 410:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(80);
@@ -643,14 +720,15 @@ var MyApp = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_post_component__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs__ = __webpack_require__(415);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs__ = __webpack_require__(416);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__requests_requests__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__myAccount_myAcc__ = __webpack_require__(354);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -660,6 +738,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -701,6 +780,9 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.navReqPage = function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__requests_requests__["a" /* RequestsPage */]);
     };
+    HomePage.prototype.navMyAccount = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__myAccount_myAcc__["a" /* myAcc */]);
+    };
     HomePage.prototype.giveInfo = function () {
         this.postCont.clear();
         for (var posts in this.userInfo[this.currentUser]['posts']) {
@@ -727,7 +809,7 @@ var HomePage = /** @class */ (function () {
     ], HomePage.prototype, "postCont", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\home\home.html"*/'<ion-header >\n\n    <ion-navbar>\n\n      <ion-title style="text-align: center;">\n\n        Stelcoin*\n\n      </ion-title>\n\n      <ion-buttons end>\n\n          <button ion-button icon-only (click)="openModal()">\n\n            <ion-icon name="options"></ion-icon>\n\n          </button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  \n\n  <ion-content scrollbar-y="false;" padding>\n\n      \n\n      <h3 id="stelcoin-heading1" style="color:#2E2D2D;font-weight:300;text-align:center;">\n\n        Services\n\n      </h3>\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label style="text-align: center;">Item</ion-label>\n\n        <ion-select [(ngModel)]="currentUser" interface="popover" (ionChange)="giveInfo()">\n\n            <ion-option *ngFor="let user of userList | async">{{user}}</ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <template #viewPosts></template>\n\n    </ion-list>\n\n    \n\n  </ion-content>\n\n  \n\n  \n\n  \n\n'/*ion-inline-end:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\home\home.html"*/'<ion-header >\n\n    <ion-navbar>\n\n      <ion-title style="text-align: center;">\n\n        Home*\n\n      </ion-title>\n\n      <ion-buttons end>\n\n          <button ion-button icon-only (click)="navMyAccount()">\n\n            <ion-icon name="options"></ion-icon>\n\n          </button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  \n\n  <ion-content scrollbar-y="false;" padding>\n\n    <ion-list>\n\n      <ion-item>\n\n        <ion-label style="text-align: center;">Item</ion-label>\n\n        <ion-select [(ngModel)]="currentUser" interface="popover" (ionChange)="giveInfo()">\n\n            <ion-option *ngFor="let user of userList | async">{{user}}</ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <ion-item>\n\n          <ion-label style="text-align: center;">Item</ion-label>\n\n      </ion-item>\n\n      <template #viewPosts></template>\n\n    </ion-list>\n\n    \n\n  </ion-content>\n\n  <ion-footer text-center>\n\n        Stelcoin*\n\n    </ion-footer>\n\n  \n\n  \n\n  \n\n'/*ion-inline-end:"C:\Users\user1\Documents\GitHub\InternshipApp\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["o" /* ComponentFactoryResolver */],
@@ -740,5 +822,5 @@ var HomePage = /** @class */ (function () {
 
 /***/ })
 
-},[354]);
+},[355]);
 //# sourceMappingURL=main.js.map

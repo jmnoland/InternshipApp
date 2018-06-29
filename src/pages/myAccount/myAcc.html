@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title style="text-align: center;">
+                <font text-center face="Courier New">
+                        My Account*
+                </font>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content scrollbar-y="false;" padding>
+        <div class="col">
+                <div class="col">
+                    <ion-item>
+                        <ion-label>
+                            Wallet
+                        </ion-label>
+                    </ion-item>
+                </div>
+            </div>
+    <div class="col">
+        <ion-list>
+                <ion-item>
+                  <ion-label>Add Funds</ion-label>
+                  <ion-input type="number" [(ngModel)]="funds"></ion-input>
+                </ion-item>
+        </ion-list>
+        
+        <button ion-button (click)="addFunds()" round>
+            Submit
+        </button>
+    </div>
+            
+</ion-content>
+
+<ion-footer text-center>
+        
+        Stelcoin*
+</ion-footer>
