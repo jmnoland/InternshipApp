@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>createAccount</ion-title>
+    <ion-title> Create Account</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,7 +21,9 @@
             <ion-label floating>Retype Password</ion-label>
             <ion-input type="password" [(ngModel)]="confirmPass"></ion-input>
         </ion-item>
-        <ion-item button (click)="CreateAccount()">Submit</ion-item>
+
+        <button ion-button (click)="CreateAccount()" round outline>Submit</button>
+        <!-- <ion-item button (click)="CreateAccount()">Submit</ion-item> -->
     </ion-list>
 
 </ion-content>

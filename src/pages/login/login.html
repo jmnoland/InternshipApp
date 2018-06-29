@@ -1,18 +1,24 @@
 <ion-header>
-    <ion-title style="text-align: center;">
-            <font face="Courier New">
-                Stelcoin*
-            </font>
-    </ion-title>
+
+<ion-navbar>
+<ion-title style="text-align: center;">
+                <font face="Futura">
+                        Stelcoin
+                </font>
+        </ion-title>
+</ion-navbar>
+        
+
   </ion-header>
   
   <ion-content padding>
-  
+
+        <img src="assets/imgs/stelcoin.png"/>  
     <ion-list>
             <div text-center class="row" >
                     <div class="col" >
         <ion-item>
-            <ion-label text-center fixed>Email</ion-label>
+            <ion-label fixed>Email</ion-label>
             <ion-input type="email" [(ngModel)]="userEmail"></ion-input>
         </ion-item>
         </div>
@@ -21,7 +27,7 @@
         <div  class="row" >
                 <div  class="col" >
         <ion-item>
-            <ion-label text-center fixed>Password</ion-label>
+            <ion-label fixed>Password</ion-label>
             <ion-input type="password" [(ngModel)]="userPass"></ion-input>
         </ion-item>
         </div>
@@ -29,16 +35,16 @@
         
     </ion-list>
 
-    <div text-center class="row" >
+    <div centre class="row" >
             <div class="col" >
-                    <button ion-button (click)="runAuthen()" round>Login</button>
+                    <button ion-button (click)="runAuthen()" round outline>Login</button>
             </div>
             
         </div>
-    <div text-center class="row">
+    <div class="row">
      
             <div class="col">
-                    <button text-center ion-button (click)="navCreatePage()" round outline>Create Account</button>
+                    <button ion-button (click)="navCreatePage()" round outline color="stelcoinred">Create Account</button>
             </div>
     </div>
     
