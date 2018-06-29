@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>Users</ion-label>
+      <ion-select [(ngModel)]="currentUser" interface="popover" (ionChange)="giveInfo()">
+          <ion-option *ngFor="let user of userList | async">{{user}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <template #viewPosts></template>
+  </ion-list>
+  <div padding>
+    <button ion-button full round>Add Notification</button>
+  </div>
+</ion-content>
+
