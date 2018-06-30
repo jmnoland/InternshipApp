@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>requests</ion-title>
+    <ion-title text-center>Requests</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,6 +10,11 @@
 <ion-content padding>
 
     <form [formGroup]="request">
+      <ion-item>
+        <ion-label style="text-align: center;">
+          Make new Request
+        </ion-label>
+      </ion-item>
       <ion-item>
           <ion-label>Title</ion-label>
           <ion-input type="text" formControlName="title"></ion-input>
@@ -23,10 +28,11 @@
 
     <ion-list>
       <ion-item>
-        <ion-label>Add Funds</ion-label>
-        <ion-input type="number" [(ngModel)]="funds"></ion-input>
+        <ion-label style="text-align: center;">
+          My Requests
+        </ion-label>
       </ion-item>
-      <ion-item button (click)="addFunds()">Submit</ion-item>
+      <template #viewRequests></template>
     </ion-list>
-
+    
 </ion-content>

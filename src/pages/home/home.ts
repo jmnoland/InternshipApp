@@ -7,7 +7,6 @@ import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs';
 
-import { LoginPage } from '../login/login';
 import { RequestsPage } from '../requests/requests';
 
 @Component({
@@ -19,6 +18,7 @@ export class HomePage {
   postList: Observable<any[]>;
   reqInfo = {};
   currentUser;
+  loginUser;
 
   @ViewChild("viewPosts", { read: ViewContainerRef }) postCont;
   componentRef: ComponentRef<any>;
@@ -28,54 +28,40 @@ export class HomePage {
               private resolver: ComponentFactoryResolver,
               private storage: Storage) {
 
-    // firebase.database().ref('requests').once('value',(reqData)=>{
-    //   if(reqData.val() != null || reqData.val() != undefined){
-    //     let temp = Object.keys(reqData.val());
-    //     this.reqInfo = reqData.val();
-    //     let tempList = [];
-    //     let tempPost = [];
-    //     for(let x in temp){
-    //       tempList.push(temp[x]);
-    //       for (let y in this.reqInfo[temp[x]]){
-    //         tempPost.push(this.reqInfo[temp[x]][y]);
-    //       }
-    //     }
-    //     this.postList = Observable.of(tempPost);
-    //     this.userList = Observable.of(tempList);
-    //   }
-    // });
-
-    firebase.database().ref('requests').once('value',(data)=>{
-      if(data.val() != null || data.val() != undefined){
-        let sortList = data.val();
-        for(let x in sortList){
-          let userPosts = [];
-          userPosts.push(sortList[x]);
-          this.reqInfo[x] = userPosts;
-        }
-        let keyList = Object.keys(this.reqInfo);
-        this.userList = Observable.of(keyList);
-      }
-    });
     //fetches the balance to display on page
     storage.get('walletKey').then((key)=>{
+      this.loginUser = key;
       firebase.database().ref('users/' + key).child('balance').once('value',(userData)=>{
         this.userBal = userData.val().balance;
       }).then(()=>{
         //when the balance gets changed the new value will be displayed
         firebase.database().ref('users/' + key).child('balance').on('child_changed',(userData)=>{
-          console.log(userData.val());
           this.userBal = userData.val();
         });
       });
+    }).then(()=>{
+      firebase.database().ref('requests').once('value',(data)=>{
+        if(data.val() != null || data.val() != undefined){
+          let sortList = data.val();
+          for(let x in sortList){
+            if(this.loginUser == x){
+              continue;
+            }
+            let userPosts = [];
+            userPosts.push(sortList[x]);
+            this.reqInfo[x] = userPosts;
+          }
+          let keyList = Object.keys(this.reqInfo);
+          this.userList = Observable.of(keyList);
+        }
+      });
     });
+    
   }
 
   navReqPage(){
     this.navCtrl.push(RequestsPage);
   }
-
-
 
   giveInfo(){
     this.postCont.clear();
@@ -89,16 +75,6 @@ export class HomePage {
         this.componentRef.instance.reqID = post;
       }
     }
-  }
-
-  Logout(){
-    firebase.auth().signOut().then(()=>{
-      console.log('Signed Out');
-      this.storage.clear();
-      this.navCtrl.push(LoginPage);
-    }, function(error) {
-      console.error('Sign Out Error', error);
-    });
   }
 
 }

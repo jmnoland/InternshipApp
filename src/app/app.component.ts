@@ -9,6 +9,8 @@ import { LoginPage } from '../pages/login/login';
 import firebase from 'firebase';
 import { RequestsPage } from '../pages/requests/requests';
 
+import { Storage } from '@ionic/storage';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -19,14 +21,17 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
+              public storage: Storage) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Login', component: LoginPage},
-      { title: 'Request', component: RequestsPage}
+      { title: 'Request', component: RequestsPage},
+      { title: 'Logout', component: ''}
     ];
 
   }
@@ -50,8 +55,23 @@ export class MyApp {
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if(page.title != 'Logout'){
+      // Reset the content nav to have just this page
+      // we wouldn't want the back button to show in this scenario
+      this.nav.setRoot(page.component);
+    } else {
+      this.logout();
+    }
   }
+
+  logout(){
+    firebase.auth().signOut().then(()=>{
+      console.log('Signed Out');
+      this.storage.clear();
+      this.nav.setRoot(LoginPage);
+    }, function(error) {
+      console.error('Sign Out Error', error);
+    });
+  }
+
 }

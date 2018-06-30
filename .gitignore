@@ -15,6 +15,7 @@ plugins
 *.swo
 *.log
 *.DS_Store
+www/
 
 # Runtime data
 pids
