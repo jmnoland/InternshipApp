@@ -20,6 +20,7 @@ export class HomePage {
   reqInfo = {};
   currentUser;
   loginUser;
+  nameKey = {};
 
   @ViewChild("viewPosts", { read: ViewContainerRef }) postCont;
   componentRef: ComponentRef<any>;
@@ -53,7 +54,14 @@ export class HomePage {
             this.reqInfo[x] = userPosts;
           }
           let keyList = Object.keys(this.reqInfo);
-          this.userList = Observable.of(keyList);
+          let NameList = [];
+          for(let user in keyList){
+            firebase.database().ref('users/' + keyList[user]).once('value',(getNames)=>{
+              NameList.push(getNames.val().name + " " + getNames.val().surname);
+              this.nameKey[getNames.val().name + " " + getNames.val().surname] = keyList[user];
+            });
+          }
+          this.userList = Observable.of(NameList);
         }
       });
     });
@@ -70,13 +78,13 @@ export class HomePage {
 
   giveInfo(){
     this.postCont.clear();
-    for(let num in this.reqInfo[this.currentUser]){
-      for(let post in this.reqInfo[this.currentUser][num]){
+    for(let num in this.reqInfo[this.nameKey[this.currentUser]]){
+      for(let post in this.reqInfo[this.nameKey[this.currentUser]][num]){
         const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(PostsComponent);
         this.componentRef = this.postCont.createComponent(factory);
-        this.componentRef.instance.title = this.reqInfo[this.currentUser][num][post].title;
-        this.componentRef.instance.cost = this.reqInfo[this.currentUser][num][post].cost;
-        this.componentRef.instance.userData = this.currentUser;
+        this.componentRef.instance.title = this.reqInfo[this.nameKey[this.currentUser]][num][post].title;
+        this.componentRef.instance.cost = this.reqInfo[this.nameKey[this.currentUser]][num][post].cost;
+        this.componentRef.instance.userData = this.nameKey[this.currentUser];
         this.componentRef.instance.reqID = post;
       }
     }
