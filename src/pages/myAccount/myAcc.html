@@ -1,39 +1,72 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title style="text-align: center;">
-                <font text-center face="Courier New">
-                        My Account*
-                </font>
-        </ion-title>
-    </ion-navbar>
-</ion-header>
+        <ion-header>
+            <ion-navbar>
+                <ion-title style="text-align: center;">
+                        <font text-center face="Courier New">
+                                My Account*
+                        </font>
+                </ion-title>
+            </ion-navbar>
+        </ion-header>
 
-<ion-content scrollbar-y="false;" padding>
-        <div class="col">
-                <div class="col">
-                    <ion-item>
-                        <ion-label>
-                            Wallet
-                        </ion-label>
-                    </ion-item>
-                </div>
-            </div>
-    <div class="col">
-        <ion-list>
+        <ion-content scrollbar-y="false;" padding>                        
+            <ion-item>
+                <ion-label>
+                    <font style="font-size:20px">Wallet </font>
+                </ion-label>
+                <ion-label text-right>
+                    {{bal}} <font style="color:red; font-size:16px">STC</font>
+                </ion-label>
+            </ion-item>  
+
+                <div class="row"></div>
                 <ion-item>
-                  <ion-label>Add Funds</ion-label>
-                  <ion-input type="number" [(ngModel)]="funds"></ion-input>
-                </ion-item>
-        </ion-list>
-        
-        <button ion-button (click)="addFunds()" round>
-            Submit
-        </button>
-    </div>
-            
-</ion-content>
+                        <ion-label floating>Add Funds</ion-label>
+                            <ion-input type="number" [(ngModel)]="funds">
 
-<ion-footer text-center>
-        
-        Stelcoin*
-</ion-footer>
+                            </ion-input> 
+                            <button item-right ion-button (click)="addFunds()" square>
+                                    Submit
+                                </button>                 
+                </ion-item>
+                   
+                        <div class="row"></div>
+                        <div class="row">
+                            <ion-item>
+                                <ion-label>
+                                        <font style="font-size:20px">My Jobs </font>
+                                </ion-label>
+                                <ion-label text-right>
+                                        <font style="font-size:10px">active </font>
+                                </ion-label>
+                            </ion-item>
+                            </div>
+                                <ion-list>
+                                    <ion-item>
+                                        <ion-label>
+                                                <font style="font-size:20px">Job 1 </font>
+                                        </ion-label>
+                                        <button item-right ion-button square>delete</button>
+                                    </ion-item>
+                                    <ion-item>
+                                            <ion-label>
+                                                    <font style="font-size:20px">Job 2 </font>
+                                            </ion-label>
+                                            <button item-right ion-button square>delete</button>
+                                        </ion-item>
+                                        <ion-item>
+                                                <ion-label>
+                                                        <font style="font-size:20px">Job 3 </font>
+                                                </ion-label>
+                                                <button item-right ion-button square>delete</button>
+                                            </ion-item>
+                                </ion-list>
+
+                
+                
+                    
+        </ion-content>
+
+        <ion-footer text-center>
+                
+                Stelcoin*
+        </ion-footer>

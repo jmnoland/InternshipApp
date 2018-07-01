@@ -13,6 +13,7 @@ import { Storage } from '@ionic/storage';
 
     private request : FormGroup;
   funds;
+  bal;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -22,6 +23,15 @@ import { Storage } from '@ionic/storage';
       title: ['', Validators.required],
       cost: ['', Validators.required],
       });
+      this.storage.get('walletKey').then((key)=>{
+        firebase.database().ref('users/' + key).child('balance').once('value',(data)=>{
+            this.bal = data.val().balance
+        }).then(()=>{
+            firebase.database().ref('users/' + key).child('balance').on('child_changed',(data)=>{
+                this.bal = data.val()
+            });
+        });
+    });
   }
   logform(){
     this.storage.get('walletKey').then((key)=>{
@@ -34,8 +44,12 @@ import { Storage } from '@ionic/storage';
   }
 
   addFunds(){
+
+    
+
     this.storage.get('walletKey').then((key)=>{
       firebase.database().ref('users/' + key).child('balance').once('value',(bal)=>{
+          
         console.log(bal.val().balance);
         console.log(this.funds);
         firebase.database().ref('users/' + key + '/balance').update({
@@ -44,6 +58,7 @@ import { Storage } from '@ionic/storage';
         this.funds = '';
       });
     });
+
   }
 
 
