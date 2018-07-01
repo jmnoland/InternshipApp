@@ -25,6 +25,7 @@ export class LoginPage {
         let userKey = currentUser.user.uid;
         if (userKey) {
           this.storage.set('walletKey',userKey);
+          console.log(currentUser);
         } else {
           // No user is signed in.
         }

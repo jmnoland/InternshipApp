@@ -1,7 +1,6 @@
+import { myAcc } from './../myAccount/myAcc';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
-import { HomePage } from '../home/home';
 
 import { Storage } from '@ionic/storage';
 import firebase from 'firebase';
@@ -32,7 +31,7 @@ export class CreateAccountPage {
         firebase.database().ref('users/' + userKey).set({
           email: this.userEmail,
           balance: {balance: 0}
-        }).then(()=>this.navCtrl.push(HomePage));
+        }).then(()=>this.navCtrl.push(myAcc));
       });
     } else {
       console.log("Password doesn't match");

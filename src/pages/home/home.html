@@ -13,32 +13,18 @@
   
   <ion-content scrollbar-y="false;" padding>
     <ion-list>
+        <ion-item>
+            <ion-label>Balance: {{userBal}}</ion-label>
+        </ion-item>
       <ion-item>
-        <ion-label style="text-align: center;">Item</ion-label>
+        <ion-label style="text-align: center;">User</ion-label>
         <ion-select [(ngModel)]="currentUser" interface="popover" (ionChange)="giveInfo()">
             <ion-option *ngFor="let user of userList | async">{{user}}</ion-option>
         </ion-select>
       </ion-item>
-      <ion-item>
-          <ion-label style="text-align: center;">Item</ion-label>
-      </ion-item>
-      <ion-item>
-          <ion-label style="text-align: center;">Item</ion-label>
-      </ion-item>
-      <ion-item>
-          <ion-label style="text-align: center;">Item</ion-label>
-      </ion-item>
-      <ion-item>
-          <ion-label style="text-align: center;">Item</ion-label>
-      </ion-item>
-      <ion-item>
-          <ion-label style="text-align: center;">Item</ion-label>
-      </ion-item>
-      <ion-item>
-          <ion-label style="text-align: center;">Item</ion-label>
-      </ion-item>
-      <ion-item>
-          <ion-label style="text-align: center;">Item</ion-label>
+      <ion-item *ngFor="let title of postList | async" (click)="giveInfo()">
+          <ion-label style="text-align: center">{{title.title}}</ion-label>
+          <ion-label style="text-align: center">R: {{title.cost}}</ion-label>
       </ion-item>
       <template #viewPosts></template>
     </ion-list>

@@ -1,4 +1,5 @@
 import { PostsComponent } from './../pages/components/post-component';
+import { RequestComponent } from './../pages/components/request-component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -27,7 +28,8 @@ import { IonicStorageModule } from '@ionic/storage';
     LoginPage,
     myAcc,
     RequestsPage,
-    PostsComponent
+    PostsComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { IonicStorageModule } from '@ionic/storage';
     CreateAccountPage,
     LoginPage,
     RequestsPage,
-    PostsComponent
+    PostsComponent,
+    RequestComponent
   ],
   providers: [
     StatusBar,
