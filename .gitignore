@@ -11,11 +11,11 @@ node_modules
 **/bower_components or sometimes it is lib/**
 platforms
 plugins
+www
 *.swp
 *.swo
 *.log
 *.DS_Store
-www/
 
 # Runtime data
 pids

@@ -4,6 +4,8 @@ import firebase from 'firebase';
 import { CreateAccountPage } from '../create-account/create-account';
 import { HomePage } from '../home/home';
 
+import { HttpProvider } from '../../providers/http/http';
+
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -16,7 +18,9 @@ export class LoginPage {
 
     constructor(public navCtrl: NavController,
                 public toastCtrl: ToastController,
-                private storage: Storage ) {
+                private storage: Storage,
+                private http: HttpProvider ) {
+                this.http.getCool();
   }
 
   runAuthen(){

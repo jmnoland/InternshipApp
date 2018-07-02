@@ -2,7 +2,7 @@ import { PostsComponent } from './../components/post-component';
 import { ComponentFactory,ComponentRef, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core'
 
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Nav } from 'ionic-angular';
 import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs';
@@ -22,6 +22,7 @@ export class HomePage {
   loginUser;
   nameKey = {};
 
+  @ViewChild(Nav) nav: Nav;
   @ViewChild("viewPosts", { read: ViewContainerRef }) postCont;
   componentRef: ComponentRef<any>;
   userBal;

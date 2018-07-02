@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
@@ -7,21 +7,33 @@ import firebase from 'firebase';
 
 @Component({
     template: `
-        <ion-item id={{userData}} *ngIf="bool">
+        <ion-item *ngIf="bool">
             <ion-label>{{title}}</ion-label>
             <ion-label>
                 {{cost}} <font style="color:red; font-size:16px">STC</font>
             </ion-label>
-            <button ion-button color="danger" item-right id={{reqID}} (click)="Confirm()" ion-button>Complete</button>
+            <button ion-button color="danger" item-right (click)="Confirm()" ion-button>Complete</button>
         </ion-item>
     `
   })
 export class PostsComponent{
     bool = true;
-    userData;
+    _userData;
+    _reqID;
     title;
     cost;
-    reqID;
+
+    @Input()
+    set userData(userData: String){
+        this._userData = userData;
+    }
+    get userData() { return this._userData; }
+
+    set reqID(reqID: String){
+        this._reqID = reqID;
+    }
+    get reqID() { return this._reqID; }
+
     constructor(public navCtrl: NavController,
                 private storage: Storage){
 
