@@ -25691,3 +25691,10 @@ page-login .item.item-input {
   background-color: transparent;
   width: 65%;
 }
+
+page-myAcc .item.item-input {
+  border: none;
+  position: center;
+  background-color: transparent;
+  width: 100%;
+}
