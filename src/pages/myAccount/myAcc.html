@@ -1,19 +1,19 @@
         <ion-header>
             <ion-navbar>
                 <ion-title style="text-align: center;">
-                        <font text-center face="Courier New">
-                                My Account
+                        <font text-center2>
+                                Account
                         </font>
                 </ion-title>
             </ion-navbar>
         </ion-header>
 
         <ion-content scrollbar-y="false;" padding>
-            <ion-item text-center>
+            <!-- <ion-item text-center>
                 <ion-label>
                         <font style="font-size:20px">My Profile</font>
                 </ion-label>
-            </ion-item>
+            </ion-item> -->
             <ion-item>
                 <ion-label floating>Name</ion-label>
                 <ion-input type="text" [(ngModel)]="name"></ion-input>
@@ -23,7 +23,7 @@
                 <ion-input type="text" [(ngModel)]="surname"></ion-input>
             </ion-item>
             <ion-item>
-                <button ion-button (click)="submitInfo()">Submit</button>
+                <button item-right ion-button (click)="submitInfo()">Submit</button>
             </ion-item>
 
             <ion-item>
@@ -31,7 +31,7 @@
                     <font style="font-size:20px">Wallet </font>
                 </ion-label>
                 <ion-label text-right>
-                    {{bal}} <font style="color:red; font-size:16px">STC</font>
+                    {{bal}} <font style="color: primary; font-size:16px">STC</font>
                 </ion-label>
             </ion-item>  
 
@@ -62,19 +62,19 @@
                                         <ion-label>
                                             <font style="font-size:20px">Job 1 </font>
                                         </ion-label>
-                                        <button item-right ion-button square>delete</button>
+                                        <button item-right ion-button square>Delete</button>
                                     </ion-item>
                                     <ion-item>
                                         <ion-label>
                                             <font style="font-size:20px">Job 2 </font>
                                         </ion-label>
-                                        <button item-right ion-button square>delete</button>
+                                        <button item-right ion-button square>Delete</button>
                                     </ion-item>
                                     <ion-item>
                                         <ion-label>
                                             <font style="font-size:20px">Job 3 </font>
                                         </ion-label>
-                                        <button item-right ion-button square>delete</button>
+                                        <button item-right ion-button square>Delete</button>
                                     </ion-item>
                                 </ion-list>
 
@@ -84,6 +84,5 @@
         </ion-content>
 
         <ion-footer text-center>
-                
-                Stelcoin*
+
         </ion-footer>
