@@ -9,8 +9,10 @@ import firebase from 'firebase';
     template: `
         <ion-item id={{userData}} *ngIf="bool">
             <ion-label>{{title}}</ion-label>
-            <ion-label>R {{cost}}</ion-label>
-            <button ion-button color="danger" item-right id={{reqID}} (click)="Confirm()" ion-button>Offer</button>
+            <ion-label>
+                {{cost}} <font style="color:red; font-size:16px">STC</font>
+            </ion-label>
+            <button ion-button color="danger" item-right id={{reqID}} (click)="Confirm()" ion-button>Complete</button>
         </ion-item>
     `
   })
@@ -56,6 +58,16 @@ export class PostsComponent{
                         console.log("not enough money");
                     }
                 });
+            });
+            firebase.database().ref('transactions/' + this.userData + '/paid').push({
+                user: key,
+                title: this.title,
+                amount: this.cost
+            });
+            firebase.database().ref('transactions/' + key + '/recieved').push({
+                user: this.userData,
+                title: this.title,
+                amount: this.cost
             });
         });
     }

@@ -8,7 +8,9 @@ import firebase from 'firebase';
     template: `
     <ion-item *ngIf="bool">
         <ion-label>{{title}}</ion-label>
-        <ion-label>{{cost}}</ion-label>
+        <ion-label>
+            {{cost}} <font style="color:red; font-size:16px">STC</font>
+        </ion-label>
         <button ion-button icon-only item-right color="danger" (click)="deleteReq(key)">
             <ion-icon name="close-circle"></ion-icon>
         </button>
