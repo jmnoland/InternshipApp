@@ -5,6 +5,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import firebase from 'firebase';
 
+import { HttpProvider } from '../../providers/http/http';
+
 @Component({
   selector: 'page-create-account',
   templateUrl: 'create-account.html',
@@ -15,7 +17,8 @@ export class CreateAccountPage {
   confirmPass;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private storage: Storage) {
+              private storage: Storage,
+              private http: HttpProvider) {
   }
 
   CreateAccount(){
