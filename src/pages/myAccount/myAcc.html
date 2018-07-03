@@ -58,26 +58,20 @@
                                 <ion-label text-right>
                                         <font style="font-size:10px">active </font>
                                 </ion-label>
+                                <button ion-button icon-only item-right color="danger" (click)="addJob()">
+                                        <ion-icon name="add"></ion-icon>
+                                </button>
                             </ion-item>
                             </div>
                                 <ion-list>
-                                    <ion-item>
+                                    <ion-item *ngFor="let job of jobList">
                                         <ion-label>
-                                            <font style="font-size:20px">Job 1 </font>
+                                            <font style="font-size:20px">{{job.title}}</font>
                                         </ion-label>
-                                        <button item-right ion-button square>Delete</button>
-                                    </ion-item>
-                                    <ion-item>
                                         <ion-label>
-                                            <font style="font-size:20px">Job 2 </font>
+                                            <font style="font-size:20px">{{job.cost}} STC</font>
                                         </ion-label>
-                                        <button item-right ion-button square>Delete</button>
-                                    </ion-item>
-                                    <ion-item>
-                                        <ion-label>
-                                            <font style="font-size:20px">Job 3 </font>
-                                        </ion-label>
-                                        <button item-right ion-button square>Delete</button>
+                                        <button item-right ion-button square (click)="deleteJob(job.key)">Delete</button>
                                     </ion-item>
                                 </ion-list>
 

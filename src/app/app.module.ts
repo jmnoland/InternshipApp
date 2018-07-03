@@ -2,6 +2,7 @@ import { PostsComponent } from './../pages/components/post-component';
 import { RequestComponent } from './../pages/components/request-component';
 import { OfferComponent } from './../pages/components/offered-component';
 import { AcceptedComponent } from './../pages/components/accepted-component';
+import { AddJobComponent } from './../pages/components/addjob-component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -33,7 +34,8 @@ import { IonicStorageModule } from '@ionic/storage';
     PostsComponent,
     RequestComponent,
     OfferComponent,
-    AcceptedComponent
+    AcceptedComponent,
+    AddJobComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { IonicStorageModule } from '@ionic/storage';
     PostsComponent,
     RequestComponent,
     OfferComponent,
-    AcceptedComponent
+    AcceptedComponent,
+    AddJobComponent
   ],
   providers: [
     StatusBar,

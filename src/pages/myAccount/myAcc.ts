@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
+
+import { AddJobComponent } from '../components/addjob-component';
 
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import firebase from 'firebase';
@@ -11,26 +13,30 @@ import { Storage } from '@ionic/storage';
   })
   export class myAcc {
 
-    private request : FormGroup;
+  private request : FormGroup;
   funds;
   bal;
   name;
   surname;
+  jobList = [];
+  userKey;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private formBuilder: FormBuilder,
-              private storage: Storage) {
+              private storage: Storage,
+              private modalCtrl: ModalController) {
     this.request = this.formBuilder.group({
       title: ['', Validators.required],
       cost: ['', Validators.required],
       });
       this.storage.get('walletKey').then((key)=>{
+        this.userKey = key;
         firebase.database().ref('users/' + key).child('balance').once('value',(data)=>{
             this.bal = data.val().balance
         }).then(()=>{
             firebase.database().ref('users/' + key).child('balance').on('child_changed',(data)=>{
-                this.bal = data.val()
+                this.bal = data.val();
             });
         });
         firebase.database().ref('users/' + key).child('name').once('value', (userName)=>{
@@ -38,6 +44,10 @@ import { Storage } from '@ionic/storage';
         });
         firebase.database().ref('users/' + key).child('surname').once('value', (userSur)=>{
           this.surname = userSur.val();
+        });
+        firebase.database().ref('users/' + this.userKey + '/jobs/').on('child_added',(jobData)=>{
+          let thisKey = jobData.key;
+          this.jobList.push({'key': thisKey, 'title': jobData.val().title, 'cost': jobData.val().cost});
         });
     });
   }
@@ -72,5 +82,18 @@ import { Storage } from '@ionic/storage';
     });
   }
 
+  addJob(){
+    const modal = this.modalCtrl.create(AddJobComponent, {'key': this.userKey});
+    modal.present();
+  }
 
+  deleteJob(jobKey){
+    firebase.database().ref('jobs/' + this.userKey + '/' + jobKey).remove();
+    firebase.database().ref('users/' + this.userKey + '/jobs/' + jobKey).remove();
+    for(let item in this.jobList){
+      if (this.jobList[item].key == jobKey){
+        this.jobList.splice(item, 1);
+      }
+    }
+  }
 }
