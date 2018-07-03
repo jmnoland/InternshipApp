@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
+import { OfferComponent } from './../components/offered-component';
 
 import { Storage } from '@ionic/storage';
 import firebase from 'firebase';
 
 @Component({
     template: `
-    <ion-item *ngIf="bool">
+    <ion-item *ngIf="bool" (click)="reqClick()">
         <ion-label>{{title}}</ion-label>
         <ion-label>
             {{cost}} <font style="color:red; font-size:16px">STC</font>
@@ -31,6 +32,7 @@ export class RequestComponent{
     get key() { return this._key; }
 
     constructor(public navCtrl: NavController,
+                private modalCtrl: ModalController,
                 private storage: Storage){
 
         this.storage.get('walletKey').then((current)=>{
@@ -38,8 +40,24 @@ export class RequestComponent{
         });
     }
 
+    reqClick(){
+        let data = {key: this.key,
+                    userKey: this.userKey};
+        const modal = this.modalCtrl.create(OfferComponent, data);
+        modal.present();
+    }
+
     deleteReq(reqKey){
-        firebase.database().ref('requests/' + this.userKey + '/' + reqKey).remove();
+        firebase.database().ref('requests/currentReqs/' + this.userKey + '/' + reqKey).remove();
+        firebase.database().ref('users/' + this.userKey + '/currentReqs/' + reqKey).child('users').once('value',(allUsers)=>{
+            if(allUsers.val() != undefined){
+                let temp = Object.keys(allUsers.val());
+                for(let user in temp){
+                    firebase.database().ref('users/' + temp[user] + '/offerReqs/' + this.userKey + '/' + reqKey).remove();
+                }
+            }
+        });
+        firebase.database().ref('users/' + this.userKey + '/currentReqs/' + reqKey).remove();
         this.bool = false;
     }
 }

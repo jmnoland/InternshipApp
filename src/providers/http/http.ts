@@ -15,9 +15,7 @@ export class HttpProvider {
                                   'Accept':'text/html; charset=utf-8',
                                   'content-type':'text/html',
                                   'responseType': 'text/html'});
-    this.httpClient.get('http://40.115.100.13:3001/newwallet', {headers: header}).subscribe((walletKey)=>{
-      return walletKey
-    });
+    return this.httpClient.get('http://40.115.100.13:3001/newwallet', {headers: header});
   }
 
 

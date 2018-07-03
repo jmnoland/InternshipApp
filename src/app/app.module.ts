@@ -1,5 +1,7 @@
 import { PostsComponent } from './../pages/components/post-component';
 import { RequestComponent } from './../pages/components/request-component';
+import { OfferComponent } from './../pages/components/offered-component';
+import { AcceptedComponent } from './../pages/components/accepted-component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -29,7 +31,9 @@ import { IonicStorageModule } from '@ionic/storage';
     myAcc,
     RequestsPage,
     PostsComponent,
-    RequestComponent
+    RequestComponent,
+    OfferComponent,
+    AcceptedComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,9 @@ import { IonicStorageModule } from '@ionic/storage';
     LoginPage,
     RequestsPage,
     PostsComponent,
-    RequestComponent
+    RequestComponent,
+    OfferComponent,
+    AcceptedComponent
   ],
   providers: [
     StatusBar,

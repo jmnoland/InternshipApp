@@ -43,7 +43,7 @@ export class HomePage {
         });
       });
     }).then(()=>{
-      firebase.database().ref('requests').once('value',(data)=>{
+      firebase.database().ref('requests/currentReqs/').once('value',(data)=>{
         if(data.val() != null || data.val() != undefined){
           let sortList = data.val();
           for(let x in sortList){
@@ -74,7 +74,7 @@ export class HomePage {
   }
 
   navMyAccount(){
-    this.navCtrl.push(myAcc); 
+    this.navCtrl.push(myAcc);
   }
 
   giveInfo(){
