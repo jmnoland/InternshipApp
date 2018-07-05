@@ -6,11 +6,29 @@
 
 </ion-header>
 
-
 <ion-content padding>
 
   <button ion-button (click)="allAccounts()">AccountInfo</button>
-  <button ion-button></button>
-  <button ion-button></button>
+  <button ion-button (click)="allBalances()">Balances</button>
+
+  <ion-list *ngIf="accBool">
+    <ion-item text-center>
+      <ion-label>Email</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let acc of allAcc">
+      <ion-label>{{acc}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="balBool">
+    <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-label item-right>Balance</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let bal of allBal">
+      <ion-label>{{bal.email}}</ion-label>
+      <ion-label>{{bal.val}} <font style="color:red; font-size:16px">STC</font></ion-label>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

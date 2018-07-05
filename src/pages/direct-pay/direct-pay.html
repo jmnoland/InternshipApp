@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>directPay</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Search for Email</ion-label>
+      <ion-input type="text" [(ngModel)]="searchedUser"></ion-input>
+    </ion-item>
+    <button ion-button color='primary' (click)="Search()">Search</button>
+  </ion-list>
+
+  <ion-list *ngIf="bool">
+    <ion-item>
+      <ion-label floating>Amount</ion-label>
+      <ion-input type="number" [(ngModel)]="amount"></ion-input>
+    </ion-item>
+    <button ion-button color='primary' (click)="Pay()">Pay User</button>
+  </ion-list>
+
+</ion-content>

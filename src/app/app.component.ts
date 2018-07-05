@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { myAcc } from './../pages/myAccount/myAcc';
+import { DirectPayPage } from './../pages/direct-pay/direct-pay';
 
 import firebase from 'firebase';
 import { RequestsPage } from '../pages/requests/requests';
@@ -33,6 +34,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Request', component: RequestsPage },
       { title: 'My Account', component: myAcc },
+      { title: 'Direct Pay', component: DirectPayPage},
       { title: 'Logout', component: '' }
     ];
 

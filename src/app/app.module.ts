@@ -15,6 +15,7 @@ import { CreateAccountPage } from '../pages/create-account/create-account';
 import { RequestsPage } from '../pages/requests/requests';
 import { myAcc } from '../pages/myAccount/myAcc';
 import { AccountantPage } from '../pages/accountant/accountant';
+import { DirectPayPage } from './../pages/direct-pay/direct-pay';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,6 +34,7 @@ import { IonicStorageModule } from '@ionic/storage';
     myAcc,
     RequestsPage,
     AccountantPage,
+    DirectPayPage,
     PostsComponent,
     RequestComponent,
     OfferComponent,
@@ -54,6 +56,7 @@ import { IonicStorageModule } from '@ionic/storage';
     LoginPage,
     RequestsPage,
     AccountantPage,
+    DirectPayPage,
     PostsComponent,
     RequestComponent,
     OfferComponent,

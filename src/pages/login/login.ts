@@ -26,8 +26,15 @@ export class LoginPage {
   }
 
   runAuthen(){
-    if (this.userEmail == 'account') {
-      this.navCtrl.push(AccountantPage);
+    if (this.userEmail == 'account@accountant.com') {
+      firebase.auth().signInWithEmailAndPassword(this.userEmail,this.userPass).then((currentUser)=>{
+        this.navCtrl.push(AccountantPage);
+      })
+      .catch((error)=>{
+        let errorMessage = error.message;
+        this.loginFail(errorMessage);
+      });
+      this.userPass = '';
     } else {
       try{
         firebase.auth().signInWithEmailAndPassword(this.userEmail,this.userPass).then((currentUser)=>{
@@ -37,7 +44,6 @@ export class LoginPage {
           } else {
             // No user is signed in.
           }
-  
           this.navLoggedInPage();
         })
         .catch((error)=>{

@@ -57,7 +57,6 @@ export class AcceptedComponent{
                 to = addTo.val();
                 let allinfo = {'from':from, 'to':to, 'amount':this.cost};
                 this.http.transaction(allinfo).subscribe((data) => {
-                    console.log(data);
                     this.completeT(reqKey);
                 });
             });
