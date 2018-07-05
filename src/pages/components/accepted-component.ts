@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { HttpProvider } from './../../providers/http/http';
+
 import { Storage } from '@ionic/storage';
 import firebase from 'firebase';
 
@@ -37,7 +39,8 @@ export class AcceptedComponent{
     get userData() { return this._userData }
 
     constructor(public navCtrl: NavController,
-                private storage: Storage){
+                private storage: Storage,
+                private http: HttpProvider){
 
         this.storage.get('walletKey').then((current)=>{
             this.userKey = current;
@@ -45,6 +48,23 @@ export class AcceptedComponent{
     }
 
     confirmPay(reqKey){
+        let from;
+        let to;
+        firebase.database().ref('users/' + this.userKey).child('address').once('value',(addFrom)=>{
+            from = addFrom.val();
+        }).then(()=>{
+            firebase.database().ref('users/' + this.userData).child('address').once('value',(addTo)=>{
+                to = addTo.val();
+                let allinfo = {'from':from, 'to':to, 'amount':this.cost};
+                this.http.transaction(allinfo).subscribe((data) => {
+                    console.log(data);
+                    this.completeT(reqKey);
+                });
+            });
+        });
+    }
+
+    completeT(reqKey){
         let posterBal;
         let userBal;
         //fetches balance of user whose post is clicked on
@@ -82,4 +102,5 @@ export class AcceptedComponent{
             });
         });
     }
+
 }

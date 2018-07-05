@@ -26,7 +26,7 @@ export class AccountantPage {
         console.log(data);
         for (let acc in data){
           if(data[acc].account != ""){
-            accounts.push({'account': data[acc].account});
+            accounts.push({'address': data[acc].address});
           }
         }
         this.balances(accounts);

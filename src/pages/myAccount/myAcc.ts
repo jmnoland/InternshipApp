@@ -74,8 +74,8 @@ import { Storage } from '@ionic/storage';
               firebase.database().ref('users/' + key + '/balance').update({
                 balance: parseInt(bal.val().balance) + parseInt(this.funds)
               });
+              this.funds = '';
             });
-            this.funds = '';
           },
           (err: HttpErrorResponse ) => {
             console.log(err);

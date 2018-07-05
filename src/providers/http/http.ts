@@ -14,8 +14,8 @@ export class HttpProvider {
   constructor(private httpClient: HttpClient) {
   }
 
-  getNewWallet(){
-    return this.httpClient.get('http://40.115.100.13:3001/newwallet', {headers: this.header});
+  getNewWallet(userInfo){
+    return this.httpClient.post('http://40.115.100.13:3001/newwallet', userInfo, {headers: this.header});
   }
 
   getAccount(){
@@ -27,6 +27,10 @@ export class HttpProvider {
   }
 
   addFunds(allinfo){
+    return this.httpClient.post('http://40.115.100.13:3001/addFunds', allinfo, {headers: this.header});
+  }
+
+  transaction(allinfo){
     return this.httpClient.post('http://40.115.100.13:3001/addFunds', allinfo, {headers: this.header});
   }
 

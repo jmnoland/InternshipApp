@@ -28,23 +28,25 @@ export class CreateAccountPage {
     if(this.userPass == this.confirmPass){
       firebase.auth().createUserWithEmailAndPassword(this.userEmail, this.userPass).catch(function(error) {
       }).then(()=>{
-        let userKey;
-        let wallet = this.http.getNewWallet();
+        let userKey = firebase.auth().currentUser.uid;
+        let wallet = this.http.getNewWallet({'id': userKey});
         wallet.subscribe((walletKey)=>{
+          console.log(walletKey);
         },
         (err: HttpErrorResponse ) => {
           if (err.error instanceof Error) {
           } else {
-            userKey = err.error.text;
-            console.log(userKey);
+            console.log(err);
+            let add = err.error.text;
+            //saves the users walletKey locally
+            this.storage.set('walletKey', userKey);
+            //saves users email under their profile then navigates to HomePage
+            firebase.database().ref('users/' + userKey).set({
+              address: add,
+              email: this.userEmail,
+              balance: {balance: 0}
+            }).then(()=>this.navCtrl.push(myAcc));
           }
-          //saves the users walletKey locally
-          this.storage.set('walletKey', userKey);
-          //saves users email under their profile then navigates to HomePage
-          firebase.database().ref('users/' + userKey).set({
-            email: this.userEmail,
-            balance: {balance: 0}
-          }).then(()=>this.navCtrl.push(myAcc));
           
         });
       });
