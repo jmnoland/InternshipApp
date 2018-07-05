@@ -4,6 +4,8 @@ import firebase from 'firebase';
 import { CreateAccountPage } from '../create-account/create-account';
 import { HomePage } from '../home/home';
 
+import { AccountantPage } from './../accountant/accountant';
+
 import { HttpProvider } from '../../providers/http/http';
 
 import { Storage } from '@ionic/storage';
@@ -24,25 +26,29 @@ export class LoginPage {
   }
 
   runAuthen(){
-    try{
-      firebase.auth().signInWithEmailAndPassword(this.userEmail,this.userPass).then((currentUser)=>{
-        let userKey = currentUser.user.uid;
-        if (userKey) {
-          this.storage.set('walletKey',userKey);
-        } else {
-          // No user is signed in.
-        }
-
-        this.navLoggedInPage();
-      })
-      .catch((error)=>{
-        let errorMessage = error.message;
-        this.loginFail(errorMessage);
-      });
-      this.userPass = '';
-    }
-    catch(err){
-      this.loginFail(err);
+    if (this.userEmail == 'account') {
+      this.navCtrl.push(AccountantPage);
+    } else {
+      try{
+        firebase.auth().signInWithEmailAndPassword(this.userEmail,this.userPass).then((currentUser)=>{
+          let userKey = currentUser.user.uid;
+          if (userKey) {
+            this.storage.set('walletKey',userKey);
+          } else {
+            // No user is signed in.
+          }
+  
+          this.navLoggedInPage();
+        })
+        .catch((error)=>{
+          let errorMessage = error.message;
+          this.loginFail(errorMessage);
+        });
+        this.userPass = '';
+      }
+      catch(err){
+        this.loginFail(err);
+      }
     }
   }
   navLoggedInPage(){
