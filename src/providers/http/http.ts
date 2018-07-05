@@ -34,6 +34,10 @@ export class HttpProvider {
     return this.httpClient.post('http://40.115.100.13:3001/addFunds', allinfo, {headers: this.header});
   }
 
+  grantPer(allinfo){
+    return this.httpClient.post('http://40.115.100.13:3001/grant', allinfo, {headers: this.header});
+  }
+
   getCool(){
      this.httpClient.get('http://40.115.100.13:3001/netinfo', {headers: this.header}).subscribe(
       data => {

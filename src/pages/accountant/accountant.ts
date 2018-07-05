@@ -25,7 +25,7 @@ export class AccountantPage {
       data => {
         let fetchAcc = [];
         for (let acc in data){
-          if(data[acc].account != ""){
+          if(data[acc].account != "" && data[acc].account != 'n8uSiKTcvRh7Cswv7IzvlG055uv2'){
             if(data[acc].address != '18D3UdWy2frsTnGuRMAzBmDJASuA3psvwVUTC3'){
               fetchAcc.push(data[acc].account);
             }
@@ -114,7 +114,7 @@ export class AccountantPage {
         this.allBal.push({'email':id.val(),'val':qty});
       });
     } else {
-      this.allBal.push({'email':key, 'val':qty});
+      this.allBal.push({'email':'Distributor', 'val':qty});
     }
   }
 

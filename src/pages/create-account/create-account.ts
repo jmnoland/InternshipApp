@@ -34,10 +34,12 @@ export class CreateAccountPage {
           console.log(walletKey);
         },
         (err: HttpErrorResponse ) => {
+          let add;
           if (err.error instanceof Error) {
+            console.log(err.error);
           } else {
             console.log(err);
-            let add = err.error.text;
+            add = err.error.text;
             //saves the users walletKey locally
             this.storage.set('walletKey', userKey);
             //saves users email under their profile then navigates to HomePage
@@ -45,7 +47,24 @@ export class CreateAccountPage {
               address: add,
               email: this.userEmail,
               balance: {balance: 0}
-            }).then(()=>this.navCtrl.push(myAcc));
+            }).then(()=>{
+              this.http.grantPer({'add':add}).subscribe(
+                data => {
+                  console.log(data);
+                  this.navCtrl.push(myAcc);
+                },
+                (err: HttpErrorResponse ) => {
+                  console.log(err);
+                  if (err.error instanceof Error) {
+                    console.log("Client-side error occured.");
+                  } else {
+                    console.log("Server-side error occured.");
+                    console.log(err.error.text);
+                    this.navCtrl.push(myAcc);
+                  }
+                });
+              
+            });
           }
           
         });
