@@ -28,7 +28,7 @@ export class LoginPage {
   runAuthen(){
     if (this.userEmail == 'account@accountant.com') {
       firebase.auth().signInWithEmailAndPassword(this.userEmail,this.userPass).then((currentUser)=>{
-        this.navCtrl.push(AccountantPage);
+        this.navCtrl.setRoot(AccountantPage);
       })
       .catch((error)=>{
         let errorMessage = error.message;
@@ -58,10 +58,10 @@ export class LoginPage {
     }
   }
   navLoggedInPage(){
-    this.navCtrl.push(HomePage);
+    this.navCtrl.setRoot(HomePage);
   }
   navCreatePage(){
-    this.navCtrl.push(CreateAccountPage);
+    this.navCtrl.setRoot(CreateAccountPage);
   }
   loginFail(errorMessage){
     let toast = this.toastCtrl.create({
@@ -70,8 +70,5 @@ export class LoginPage {
         position: 'top'
     });
     toast.present();
-  }
-  CreateAccount(){
-    this.navCtrl.push(CreateAccountPage);
   }
 }

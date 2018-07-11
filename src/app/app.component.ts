@@ -11,7 +11,7 @@ import { DirectPayPage } from './../pages/direct-pay/direct-pay';
 import firebase from 'firebase';
 import { RequestsPage } from '../pages/requests/requests';
 
-import { Storage } from '@ionic/storage';
+import { Storage } from '@ionic/storage'; 
 
 @Component({
   templateUrl: 'app.html'
