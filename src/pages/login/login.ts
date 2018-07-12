@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController, LoadingController } from 'ionic-angular';
 import firebase from 'firebase';
 import { CreateAccountPage } from '../create-account/create-account';
 import { HomePage } from '../home/home';
@@ -21,17 +21,24 @@ export class LoginPage {
     constructor(public navCtrl: NavController,
                 public toastCtrl: ToastController,
                 private storage: Storage,
+                private loadCtrl: LoadingController,
                 private http: HttpProvider ) {
                 this.http.getCool();
   }
 
   runAuthen(){
+    const loader = this.loadCtrl.create({
+      content: "Please wait...",
+    });
+    loader.present();
     if (this.userEmail == 'account@accountant.com') {
       firebase.auth().signInWithEmailAndPassword(this.userEmail,this.userPass).then((currentUser)=>{
+        loader.dismiss();
         this.navCtrl.push(AccountantPage);
       })
       .catch((error)=>{
         let errorMessage = error.message;
+        loader.dismiss();
         this.loginFail(errorMessage);
       });
       this.userPass = '';
@@ -44,15 +51,18 @@ export class LoginPage {
           } else {
             // No user is signed in.
           }
+          loader.dismiss();
           this.navLoggedInPage();
         })
         .catch((error)=>{
           let errorMessage = error.message;
+          loader.dismiss();
           this.loginFail(errorMessage);
         });
         this.userPass = '';
       }
       catch(err){
+        loader.dismiss();
         this.loginFail(err);
       }
     }

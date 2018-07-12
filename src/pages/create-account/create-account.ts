@@ -1,6 +1,6 @@
 import { myAcc } from './../myAccount/myAcc';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -20,10 +20,15 @@ export class CreateAccountPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private storage: Storage,
+              private loadCtrl: LoadingController,
               private http: HttpProvider) {
   }
 
   CreateAccount(){
+    const loader = this.loadCtrl.create({
+      content: "Please wait...",
+    });
+    loader.present();
     //checks if users password matches the retyped password
     if(this.userPass == this.confirmPass){
       firebase.auth().createUserWithEmailAndPassword(this.userEmail, this.userPass).catch(function(error) {
@@ -51,6 +56,7 @@ export class CreateAccountPage {
               this.http.grantPer({'add':add}).subscribe(
                 data => {
                   console.log(data);
+                  loader.dismiss();
                   this.navCtrl.push(myAcc);
                 },
                 (err: HttpErrorResponse ) => {
@@ -60,6 +66,7 @@ export class CreateAccountPage {
                   } else {
                     console.log("Server-side error occured.");
                     console.log(err.error.text);
+                    loader.dismiss();
                     this.navCtrl.push(myAcc);
                   }
                 });
@@ -70,6 +77,7 @@ export class CreateAccountPage {
         });
       });
     } else {
+      loader.dismiss();
       console.log("Password doesn't match");
     }
   }
