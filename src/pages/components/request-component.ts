@@ -21,6 +21,7 @@ import firebase from 'firebase';
 export class RequestComponent{
     bool = true;
     _key: String;
+    _cat: String;
     title;
     cost;
     userKey;
@@ -30,6 +31,11 @@ export class RequestComponent{
         this._key = key;
     }
     get key() { return this._key; }
+
+    set cat(cat: String){
+        this._cat = cat;
+    }
+    get cat() { return this._cat }
 
     constructor(public navCtrl: NavController,
                 private modalCtrl: ModalController,
@@ -58,6 +64,7 @@ export class RequestComponent{
             }
         });
         firebase.database().ref('users/' + this.userKey + '/currentReqs/' + reqKey).remove();
+        firebase.database().ref('requests/currentReqs/' + this.cat + '/' + this.userKey + '/' + reqKey).remove();
         this.bool = false;
     }
 }

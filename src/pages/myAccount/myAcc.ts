@@ -49,8 +49,7 @@ import { Storage } from '@ionic/storage';
           this.surname = userSur.val();
         });
         firebase.database().ref('users/' + this.userKey + '/jobs/').on('child_added',(jobData)=>{
-          let thisKey = jobData.key;
-          this.jobList.push({'key': thisKey, 'title': jobData.val().title, 'cost': jobData.val().cost});
+          this.jobList.push({'key': jobData.key, 'title': jobData.val().title, 'cost': jobData.val().cost});
         });
     });
   }
@@ -109,7 +108,7 @@ import { Storage } from '@ionic/storage';
   deleteJob(jobKey){
     firebase.database().ref('jobs/' + this.userKey + '/' + jobKey).remove();
     firebase.database().ref('users/' + this.userKey + '/jobs/' + jobKey).remove();
-    for(let item = 0; item >= this.jobList.length; item++){
+    for(let item = 0; item < this.jobList.length; item++){
       if (this.jobList[item].key == jobKey){
         this.jobList.splice(item, 1);
       }
