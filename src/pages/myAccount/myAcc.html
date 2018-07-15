@@ -64,14 +64,14 @@
                             </ion-item>
                             </div>
                                 <ion-list>
-                                    <ion-item *ngFor="let job of jobList">
+                                    <ion-item *ngFor="let job of jobList" (click)="viewJobReqs(job.key, job.title, job.cost)">
                                         <ion-label>
                                             <font style="font-size:20px">{{job.title}}</font>
                                         </ion-label>
                                         <ion-label>
                                             <font style="font-size:20px">{{job.cost}} STC</font>
                                         </ion-label>
-                                        <button item-right ion-button square (click)="deleteJob(job.key)">Delete</button>
+                                        <button item-right ion-button square (click)="deleteJob(job.key, job.cat)">Delete</button>
                                     </ion-item>
                                 </ion-list>
 

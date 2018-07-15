@@ -33,12 +33,8 @@ export class LoginPage {
     loader.present();
     if (this.userEmail == 'account@accountant.com') {
       firebase.auth().signInWithEmailAndPassword(this.userEmail,this.userPass).then((currentUser)=>{
-<<<<<<< HEAD
         loader.dismiss();
-        this.navCtrl.push(AccountantPage);
-=======
         this.navCtrl.setRoot(AccountantPage);
->>>>>>> 1bdf2e9c7f4fa10d036450559a7635d52ca2c24c
       })
       .catch((error)=>{
         let errorMessage = error.message;

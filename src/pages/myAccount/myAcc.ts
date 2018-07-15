@@ -4,6 +4,7 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { AddJobComponent } from '../components/addjob-component';
+import { ViewJobComponent } from '../components/viewjob-component';
 
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import firebase from 'firebase';
@@ -49,7 +50,7 @@ import { Storage } from '@ionic/storage';
           this.surname = userSur.val();
         });
         firebase.database().ref('users/' + this.userKey + '/jobs/').on('child_added',(jobData)=>{
-          this.jobList.push({'key': jobData.key, 'title': jobData.val().title, 'cost': jobData.val().cost});
+          this.jobList.push({'key': jobData.key, 'title': jobData.val().title, 'cost': jobData.val().cost, 'cat': jobData.val().category});
         });
     });
   }
@@ -65,29 +66,10 @@ import { Storage } from '@ionic/storage';
 
   addFunds(){
     this.storage.get('walletKey').then((key)=>{
-      firebase.database().ref('users/' + key).child('address').once('value',(add)=>{
-        this.http.addFunds({'from':'1ESVZYMLeCnYNqrBga7pVTy3zkosB8qcqESNsr','to': add.val(),'amount': parseFloat(this.funds)}).subscribe(
-          data => {
-            console.log(data);
-            firebase.database().ref('users/' + key).child('balance').once('value',(bal)=>{
-              firebase.database().ref('users/' + key + '/balance').update({
-                balance: parseInt(bal.val().balance) + parseInt(this.funds)
-              });
-              this.funds = '';
-            });
-          },
-          (err: HttpErrorResponse ) => {
-            console.log(err);
-            if (err.error instanceof Error) {
-              console.log("Client-side error occured.");
-            } else {
-              console.log("Server-side error occured.");
-              console.log(err.error.text);
-            }
-            this.funds = '';
-          });
+      firebase.database().ref('fundRequests/' + key).set({
+        amount: parseInt(this.funds)
       });
-      
+      this.funds = '';
     });
   }
 
@@ -105,8 +87,13 @@ import { Storage } from '@ionic/storage';
     modal.present();
   }
 
-  deleteJob(jobKey){
-    firebase.database().ref('jobs/' + this.userKey + '/' + jobKey).remove();
+  viewJobReqs(jobKey, jobTitle, jobCost){
+    const modal = this.modalCtrl.create(ViewJobComponent, {'key': jobKey, 'title': jobTitle, 'cost': jobCost});
+    modal.present();
+  }
+
+  deleteJob(jobKey, cat){
+    firebase.database().ref('jobs/allJobs/' + cat + '/' + this.userKey + '/' + jobKey).remove();
     firebase.database().ref('users/' + this.userKey + '/jobs/' + jobKey).remove();
     for(let item = 0; item < this.jobList.length; item++){
       if (this.jobList[item].key == jobKey){

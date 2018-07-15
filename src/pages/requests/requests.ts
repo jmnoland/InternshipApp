@@ -75,7 +75,6 @@ export class RequestsPage {
 
   createComponents(){
     this.reqContainer.clear();
-    console.log(this.allReqs);
     for(let x in this.allReqs){
       const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(RequestComponent);
       this.componentRef = this.reqContainer.createComponent(factory);

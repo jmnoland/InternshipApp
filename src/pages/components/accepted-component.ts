@@ -1,5 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 
 import { HttpProvider } from './../../providers/http/http';
 
@@ -40,7 +41,8 @@ export class AcceptedComponent{
 
     constructor(public navCtrl: NavController,
                 private storage: Storage,
-                private http: HttpProvider){
+                private http: HttpProvider,
+                private loadCtrl: LoadingController){
 
         this.storage.get('walletKey').then((current)=>{
             this.userKey = current;
@@ -50,6 +52,10 @@ export class AcceptedComponent{
     confirmPay(reqKey){
         let from;
         let to;
+        const loader = this.loadCtrl.create({
+            content: "Please wait...",
+          });
+        loader.present();
         firebase.database().ref('users/' + this.userKey).child('address').once('value',(addFrom)=>{
             from = addFrom.val();
         }).then(()=>{
@@ -57,7 +63,17 @@ export class AcceptedComponent{
                 to = addTo.val();
                 let allinfo = {'from':from, 'to':to, 'amount':this.cost};
                 this.http.transaction(allinfo).subscribe((data) => {
+                    loader.dismiss();
                     this.completeT(reqKey);
+                },
+                (err: HttpErrorResponse ) => {
+                  loader.dismiss();
+                  console.log(err);
+                  if (err.error instanceof Error) {
+                    console.log("Client-side error occured.");
+                  } else {
+                    console.log("Server-side error occured.");
+                  }
                 });
             });
         });

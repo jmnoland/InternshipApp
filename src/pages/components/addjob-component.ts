@@ -22,6 +22,10 @@ import firebase from 'firebase';
     <ion-content>
         <ion-list>
             <ion-item>
+                <ion-label floating>Category</ion-label>
+                <ion-input type="text" [(ngModel)]="categ"></ion-input>
+            </ion-item>
+            <ion-item>
                 <ion-label floating>Title</ion-label>
                 <ion-input type="text" [(ngModel)]="title"></ion-input>
             </ion-item>
@@ -38,6 +42,7 @@ import firebase from 'firebase';
   })
 export class AddJobComponent{
     _userData;
+    categ;
     title;
     cost;
 
@@ -50,14 +55,18 @@ export class AddJobComponent{
         this.viewCtrl.dismiss();
     }
     Submit(){
-        let pathKey = firebase.database().ref('jobs/' + this.navParams.get('key')).push().key;
-        firebase.database().ref('jobs/' + this.navParams.get('key') + '/' + pathKey).set({
+        let pathKey = firebase.database().ref('jobs/allJobs/' + this.categ + '/' + this.navParams.get('key')).push().key;
+        firebase.database().ref('jobs/allJobs/' + this.categ + '/' + this.navParams.get('key') + '/' + pathKey).set({
             title: this.title,
-            cost: this.cost
+            cost: parseInt(this.cost)
+        });
+        firebase.database().ref('jobs/categories/' + pathKey).set({
+            category: this.categ
         });
         firebase.database().ref('users/' + this.navParams.get('key') + '/jobs/' + pathKey).set({
+            category: this.categ,
             title: this.title,
-            cost: this.cost
+            cost: parseInt(this.cost)
         });
         this.viewCtrl.dismiss();
     }

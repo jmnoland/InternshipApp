@@ -8,8 +8,9 @@
 
 <ion-content padding>
 
-  <button ion-button (click)="allAccounts()">AccountInfo</button>
+  <button ion-button (click)="allAccounts()">Account Info</button>
   <button ion-button (click)="allBalances()">Balances</button>
+  <button ion-button (click)="allFundReqs()">Add Funds</button>
 
   <ion-list *ngIf="accBool">
     <ion-item text-center>
@@ -28,6 +29,20 @@
     <ion-item *ngFor="let bal of allBal">
       <ion-label>{{bal.email}}</ion-label>
       <ion-label>{{bal.val}} <font style="color:red; font-size:16px">STC</font></ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="fundBool">
+    <ion-item>
+      <ion-label>User</ion-label>
+      <ion-label>Requested</ion-label>
+      <ion-label item-right></ion-label>
+    </ion-item>
+    <ion-item *ngFor="let req of allReqs">
+      <ion-label text-wrap>{{req[0].user}}</ion-label>
+      <ion-label item-right>{{req[0].amount}} <font style="color:red; font-size:16px">STC</font></ion-label>
+      <button ion-button item-right (click)="addFunds(req[0].key, req[0].amount, req[0].address)">Accept</button>
+      <button ion-button item-right (click)="declineUser(req[0].key)">Decline</button>
     </ion-item>
   </ion-list>
 

@@ -48,13 +48,14 @@ export class RequestComponent{
 
     reqClick(){
         let data = {key: this.key,
-                    userKey: this.userKey};
+                    userKey: this.userKey,
+                    category: this.cat};
         const modal = this.modalCtrl.create(OfferComponent, data);
         modal.present();
     }
 
     deleteReq(reqKey){
-        firebase.database().ref('requests/currentReqs/' + this.userKey + '/' + reqKey).remove();
+        firebase.database().ref('requests/currentReqs/' + this.cat + '/' + this.userKey + '/' + reqKey).remove();
         firebase.database().ref('users/' + this.userKey + '/currentReqs/' + reqKey).child('users').once('value',(allUsers)=>{
             if(allUsers.val() != undefined){
                 let temp = Object.keys(allUsers.val());
@@ -65,6 +66,7 @@ export class RequestComponent{
         });
         firebase.database().ref('users/' + this.userKey + '/currentReqs/' + reqKey).remove();
         firebase.database().ref('requests/currentReqs/' + this.cat + '/' + this.userKey + '/' + reqKey).remove();
+        firebase.database().ref('requests/categories/' + reqKey).remove();
         this.bool = false;
     }
 }

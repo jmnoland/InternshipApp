@@ -47,12 +47,14 @@ export class OfferComponent{
 
     reqKey;
     userKey;
+    reqCat;
 
     constructor(public navCtrl: NavController,
                 private viewCtrl: ViewController,
                 public navParams: NavParams ){
         this.reqKey = this.navParams.get('key');
         this.userKey = this.navParams.get('userKey');
+        this.reqCat = this.navParams.get('category');
         firebase.database().ref('users/' + this.userKey + '/currentReqs/' + this.reqKey).child('title').once('value',(title)=>{
             this.title = title.val();
         });
@@ -100,9 +102,11 @@ export class OfferComponent{
         });
         firebase.database().ref('requests/activeReqs/' + this.userKey + '/' + this.reqKey).set({
             title: this.title,
+            category: this.reqCat,
             cost: this.cost
         });
-        firebase.database().ref('requests/currentReqs/' + this.userKey + '/' + this.reqKey).remove();
+        firebase.database().ref('requests/currentReqs/' + this.reqCat + '/' + this.userKey + '/' + this.reqKey).remove();
+        firebase.database().ref('requests/categories/' + this.reqKey).remove();
         this.dismiss();
     }
     declineUser(clickKey){
