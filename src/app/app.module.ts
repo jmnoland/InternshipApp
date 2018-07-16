@@ -5,6 +5,7 @@ import { AcceptedComponent } from './../pages/components/accepted-component';
 import { AddJobComponent } from './../pages/components/addjob-component';
 import { MarketRequestComponent, MarketJobsComponent } from './../pages/components/market-components';
 import { ViewJobComponent } from './../pages/components/viewjob-component';
+import { OfferReqPopover } from './../pages/components/offerReq-component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -45,7 +46,8 @@ import { IonicStorageModule } from '@ionic/storage';
     AddJobComponent,
     MarketRequestComponent,
     MarketJobsComponent,
-    ViewJobComponent
+    ViewJobComponent,
+    OfferReqPopover
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ import { IonicStorageModule } from '@ionic/storage';
     AddJobComponent,
     MarketRequestComponent,
     MarketJobsComponent,
-    ViewJobComponent
+    ViewJobComponent,
+    OfferReqPopover
   ],
   providers: [
     StatusBar,

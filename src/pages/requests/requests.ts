@@ -19,8 +19,14 @@ export class RequestsPage {
   accReqs = {};
   private userKey;
 
+  offerBool = false;
+  offList = [];
+  acceptedBool = false;
+  reqList = [];
+
   @ViewChild("viewRequests", { read: ViewContainerRef }) reqContainer;
   @ViewChild("accRequests", { read: ViewContainerRef }) accContainer;
+
   componentRef: ComponentRef<any>;
   componentRefAcc: ComponentRef<any>;
 
@@ -52,6 +58,20 @@ export class RequestsPage {
           this.accReqs = accList;
           this.createAcceptedComponents();
         });
+      });
+      firebase.database().ref('users/' + this.userKey + '/offerReqs/').on('child_added',(offReqsData)=>{
+        let temp = offReqsData.val();
+        this.offerBool = true;
+        for(let req in temp){
+          this.offList.push({'title':temp[req].title,'cost':temp[req].cost,'key':req,'user':offReqsData.key});
+        }
+      });
+      firebase.database().ref('users/' + this.userKey + '/acceptedReqs/').on('child_added',(accReqsData)=>{
+        let temp = accReqsData.val();
+        this.acceptedBool = true;
+        for(let req in temp){
+          this.reqList.push({'title':temp[req].title, 'cost':temp[req].cost});
+        }
       });
     });
   }
@@ -96,4 +116,8 @@ export class RequestsPage {
     }
   }
 
+  deleteAcc(user,key){
+    firebase.database().ref('users/' + user + '/currentReqs/' + key + '/users/' + this.userKey).remove();
+    firebase.database().ref('users/' + this.userKey + '/offerReqs/' + user + '/' + key).remove();
+  }
 }

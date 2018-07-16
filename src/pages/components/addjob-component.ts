@@ -63,7 +63,7 @@ export class AddJobComponent{
         firebase.database().ref('jobs/categories/' + pathKey).set({
             category: this.categ
         });
-        firebase.database().ref('users/' + this.navParams.get('key') + '/jobs/' + pathKey).set({
+        firebase.database().ref('users/' + this.navParams.get('key') + '/jobs/myJobs/' + pathKey).set({
             category: this.categ,
             title: this.title,
             cost: parseInt(this.cost)

@@ -31,8 +31,11 @@ import firebase from 'firebase';
                 <ion-label text-center>User's</ion-label>
             </ion-item>
             <ion-item *ngFor="let user of userList">
-                {{user.name}} {{user.surname}}
-                <button ion-button item-right (click)="acceptUser(user.key)">Accept</button>
+                <ion-label>{{user.name}} {{user.surname}}</ion-label>
+                <ion-label item-right>
+                    {{user.cost}} <font style="color:red; font-size:16px">STC</font>
+                </ion-label>
+                <button ion-button item-right (click)="acceptUser(user.key, user.cost)">Accept</button>
                 <button ion-button item-right (click)="declineUser(user.key)">Decline</button>
             </ion-item>
         </ion-list>
@@ -61,29 +64,27 @@ export class OfferComponent{
         firebase.database().ref('users/' + this.userKey + '/currentReqs/' + this.reqKey).child('cost').once('value',(cost)=>{
             this.cost = cost.val();
         });
-        firebase.database().ref('users/' + this.userKey + '/currentReqs/' + this.reqKey + '/users/').once('value',(reqData)=>{
+        firebase.database().ref('users/' + this.userKey + '/currentReqs/' + this.reqKey + '/users/').on('child_added',(reqData)=>{
             if(reqData.val() != undefined){
                 this.bool = true;
-                let offerKeys = Object.keys(reqData.val());
-                for(let x in offerKeys){
-                    let dict = {};
-                    dict['key'] = offerKeys[x];
-                    firebase.database().ref('users/' + offerKeys[x]).child('name').once('value',(name)=>{
-                        dict['name'] = name.val();
-                    });
-                    firebase.database().ref('users/' + offerKeys[x]).child('surname').once('value',(surname)=>{
-                        dict['surname'] = surname.val();
-                    });
-                    this.userList.push(dict);
-                }
+                let dict = {};
+                dict['key'] = reqData.key;
+                dict['cost'] = reqData.val().cost;
+                firebase.database().ref('users/' + reqData.key).child('name').once('value',(name)=>{
+                    dict['name'] = name.val();
+                });
+                firebase.database().ref('users/' + reqData.key).child('surname').once('value',(surname)=>{
+                    dict['surname'] = surname.val();
+                });
+                this.userList.push(dict);
             }
         });
     }
-    acceptUser(clickKey){
+    acceptUser(clickKey, price){
         firebase.database().ref('users/' + this.userKey + '/activeReqs/' + this.reqKey).set({
             user: clickKey,
             title: this.title,
-            cost: this.cost
+            cost: price
         });
         firebase.database().ref('users/' + clickKey + '/offerReqs/' + this.userKey + '/' + this.reqKey).remove();
         firebase.database().ref('users/' + this.userKey + '/currentReqs/' + this.reqKey).child('users').once('value',(allUsers)=>{
@@ -97,13 +98,13 @@ export class OfferComponent{
         }).then(()=>{
             firebase.database().ref('users/' + clickKey + '/acceptedReqs/' + this.userKey + '/' + this.reqKey).set({
                 title: this.title,
-                cost: this.cost
+                cost: price
             });
         });
         firebase.database().ref('requests/activeReqs/' + this.userKey + '/' + this.reqKey).set({
             title: this.title,
             category: this.reqCat,
-            cost: this.cost
+            cost: price
         });
         firebase.database().ref('requests/currentReqs/' + this.reqCat + '/' + this.userKey + '/' + this.reqKey).remove();
         firebase.database().ref('requests/categories/' + this.reqKey).remove();

@@ -22,7 +22,11 @@ import { Storage } from '@ionic/storage';
   name;
   surname;
   jobList = [];
+  myListReq = [];
+  myListAcc = [];
   userKey;
+  ReqBool = false;
+  jobBool = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -34,7 +38,7 @@ import { Storage } from '@ionic/storage';
       title: ['', Validators.required],
       cost: ['', Validators.required],
       });
-      this.storage.get('walletKey').then((key)=>{
+    this.storage.get('walletKey').then((key)=>{
         this.userKey = key;
         firebase.database().ref('users/' + key).child('balance').once('value',(data)=>{
             this.bal = data.val().balance
@@ -49,8 +53,20 @@ import { Storage } from '@ionic/storage';
         firebase.database().ref('users/' + key).child('surname').once('value', (userSur)=>{
           this.surname = userSur.val();
         });
-        firebase.database().ref('users/' + this.userKey + '/jobs/').on('child_added',(jobData)=>{
+        //lists Jobs the user has created
+        firebase.database().ref('users/' + this.userKey + '/jobs/myJobs/').on('child_added',(jobData)=>{
+          this.jobBool = true;
           this.jobList.push({'key': jobData.key, 'title': jobData.val().title, 'cost': jobData.val().cost, 'cat': jobData.val().category});
+        });
+        //lists the jobs the user has made requests to
+        firebase.database().ref('users/' + this.userKey + '/jobs/requests/').on('child_added',(data)=>{
+          this.ReqBool = true;
+          this.myListReq.push({'title': data.val().title, 'cost': data.val().cost, 'key': data.key, 'user': data.val().user});
+        });
+        //lists the jobs that have been accepted
+        firebase.database().ref('users/' + this.userKey + '/jobs/accepted/').on('child_added',(aData)=>{
+          this.ReqBool = true;
+          this.myListAcc.push({'title': aData.val().title, 'cost': aData.val().cost, 'key': aData.key});
         });
     });
   }
@@ -94,11 +110,16 @@ import { Storage } from '@ionic/storage';
 
   deleteJob(jobKey, cat){
     firebase.database().ref('jobs/allJobs/' + cat + '/' + this.userKey + '/' + jobKey).remove();
-    firebase.database().ref('users/' + this.userKey + '/jobs/' + jobKey).remove();
+    firebase.database().ref('users/' + this.userKey + '/jobs/myJobs/' + jobKey).remove();
     for(let item = 0; item < this.jobList.length; item++){
       if (this.jobList[item].key == jobKey){
         this.jobList.splice(item, 1);
       }
     }
   }
+  delJobReq(jobKey, user){
+    firebase.database().ref('users/' + this.userKey + '/jobs/requests/' + jobKey).remove();
+    firebase.database().ref('users/' + user + '/jobs/myJobs/' + jobKey + '/requests/' + this.userKey).remove();
+  }
+
 }

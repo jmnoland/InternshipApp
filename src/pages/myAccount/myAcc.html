@@ -1,85 +1,94 @@
-        <ion-header>
-            <ion-navbar>
-                <button ion-button menu-toggle="left" menuToggle icon-only>
-                    <ion-icon name='menu'></ion-icon>
-                </button>
-                <ion-title style="text-align: center;">
-                        <font text-center2>
-                                Account
-                        </font>
-                </ion-title>
-            </ion-navbar>
-        </ion-header>
+<ion-header>
+    <ion-navbar>
+        <button ion-button menu-toggle="left" menuToggle icon-only>
+            <ion-icon name='menu'></ion-icon>
+        </button>
+        <ion-title style="text-align: center;">
+                <font text-center2>
+                        Account
+                </font>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
 
-        <ion-content scrollbar-y="false;" padding>
-            <!-- <ion-item text-center>
-                <ion-label>
-                        <font style="font-size:20px">My Profile</font>
-                </ion-label>
-            </ion-item> -->
-            <ion-item>
-                <ion-label floating>Name</ion-label>
-                <ion-input type="text" [(ngModel)]="name"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Surname</ion-label>
-                <ion-input type="text" [(ngModel)]="surname"></ion-input>
-            </ion-item>
-            <ion-item>
-                <button item-right ion-button (click)="submitInfo()">Submit</button>
-            </ion-item>
+<ion-content scrollbar-y="false;" padding>
+    <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>Surname</ion-label>
+        <ion-input type="text" [(ngModel)]="surname"></ion-input>
+    </ion-item>
+    <ion-item>
+        <button item-right ion-button (click)="submitInfo()">Submit</button>
+    </ion-item>
 
-            <ion-item>
-                <ion-label>
-                    <font style="font-size:20px">Wallet </font>
-                </ion-label>
-                <ion-label text-right>
-                    {{bal}} <font style="color: primary; font-size:16px">STC</font>
-                </ion-label>
-            </ion-item>  
+    <ion-item>
+        <ion-label>
+            <font style="font-size:20px">Wallet </font>
+        </ion-label>
+        <ion-label text-right>
+            {{bal}} <font style="color: primary; font-size:16px">STC</font>
+        </ion-label>
+    </ion-item>
 
-                <div class="row"></div>
-                <ion-item>
-                        <ion-label floating>Add Funds</ion-label>
-                            <ion-input type="number" [(ngModel)]="funds">
+    <div class="row"></div>
+    <ion-item>
+        <ion-label floating>Add Funds</ion-label>
+        <ion-input type="number" [(ngModel)]="funds"></ion-input> 
+        <button item-right ion-button (click)="addFunds()" square>Submit</button>                 
+    </ion-item>
+    <div class="row"></div>
+    <div class="row">
+        <ion-item>
+            <ion-label>
+                    <font style="font-size:20px">My Jobs </font>
+            </ion-label>
+            <ion-label text-right>
+                    <font style="font-size:10px">active </font>
+            </ion-label>
+            <button ion-button icon-only item-right color="danger" (click)="addJob()">
+                    <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-item>
+    </div>
+    <ion-list *ngIf="jobBool">
+        <ion-item *ngFor="let job of jobList" (click)="viewJobReqs(job.key, job.title, job.cost)">
+            <ion-label>
+                <font style="font-size:20px">{{job.title}}</font>
+            </ion-label>
+            <ion-label>
+                <font style="font-size:20px">{{job.cost}} STC</font>
+            </ion-label>
+            <button item-right ion-button square (click)="deleteJob(job.key, job.cat)">Delete</button>
+        </ion-item>
+    </ion-list>
+    <ion-list *ngIf="ReqBool">
+        <ion-item>
+            <ion-label item-left>Job Requests</ion-label>
+        </ion-item>
+        <ion-item *ngFor="let item of myListReq">
+            <ion-label>
+                <font style="font-size:20px">{{item.title}}</font>
+            </ion-label>
+            <ion-label>
+                <font style="font-size:20px">{{item.cost}} STC</font>
+            </ion-label>
+            <button item-right ion-button square (click)="delJobReq(item.key, item.user)">Delete</button>
+        </ion-item>
+        <ion-item *ngFor="let item of myListAcc">
+            <ion-label>
+                <font style="font-size:20px">{{item.title}}</font>
+            </ion-label>
+            <ion-label>
+                <font style="font-size:20px">{{item.cost}} STC</font>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+          
+</ion-content>
 
-                            </ion-input> 
-                            <button item-right ion-button (click)="addFunds()" square>
-                                    Submit
-                                </button>                 
-                </ion-item>
-                   
-                        <div class="row"></div>
-                        <div class="row">
-                            <ion-item>
-                                <ion-label>
-                                        <font style="font-size:20px">My Jobs </font>
-                                </ion-label>
-                                <ion-label text-right>
-                                        <font style="font-size:10px">active </font>
-                                </ion-label>
-                                <button ion-button icon-only item-right color="danger" (click)="addJob()">
-                                        <ion-icon name="add"></ion-icon>
-                                </button>
-                            </ion-item>
-                            </div>
-                                <ion-list>
-                                    <ion-item *ngFor="let job of jobList" (click)="viewJobReqs(job.key, job.title, job.cost)">
-                                        <ion-label>
-                                            <font style="font-size:20px">{{job.title}}</font>
-                                        </ion-label>
-                                        <ion-label>
-                                            <font style="font-size:20px">{{job.cost}} STC</font>
-                                        </ion-label>
-                                        <button item-right ion-button square (click)="deleteJob(job.key, job.cat)">Delete</button>
-                                    </ion-item>
-                                </ion-list>
+<ion-footer text-center>
 
-                
-                
-                    
-        </ion-content>
-
-        <ion-footer text-center>
-
-        </ion-footer>
+</ion-footer>

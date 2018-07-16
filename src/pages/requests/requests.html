@@ -42,5 +42,26 @@
       <template #viewRequests></template>
       <template #accRequests></template>
     </ion-list>
+
+    <ion-list *ngIf="offerBool">
+      <ion-item style="text-align: center">
+        Offered Requests
+      </ion-item>
+      <ion-item *ngFor="let req of offList">
+        <ion-label>{{req.title}}</ion-label>
+        <ion-label>{{req.cost}} <font style="color:red; font-size:16px">STC</font></ion-label>
+        <button item-right ion-button (click)="deleteAcc(req.user,req.key)">Delete</button>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="acceptedBool">
+      <ion-item style="text-align: center">
+        Accepted Requests
+      </ion-item>
+      <ion-item *ngFor="let req of reqList">
+        <ion-label>{{req.title}}</ion-label>
+        <ion-label>{{req.cost}} <font style="color:red; font-size:16px">STC</font></ion-label>
+      </ion-item>
+    </ion-list>
     
 </ion-content>

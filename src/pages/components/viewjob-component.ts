@@ -68,7 +68,7 @@ export class ViewJobComponent{
                 private http: HttpProvider){
         this.storage.get('walletKey').then((user)=>{
             this.curUser = user;
-            firebase.database().ref('users/' + user + '/jobs/' + this.navParams.get('key') + '/requests/').on('child_added',(jobReqs)=>{
+            firebase.database().ref('users/' + user + '/jobs/myJobs/' + this.navParams.get('key') + '/requests/').on('child_added',(jobReqs)=>{
                 firebase.database().ref('users/' + jobReqs.key).child('name').once('value',(name)=>{
                     firebase.database().ref('users/' + jobReqs.key).child('surname').once('value',(surname)=>{
                         this.reqBool = true;
@@ -77,7 +77,7 @@ export class ViewJobComponent{
                     });
                 });
             });
-            firebase.database().ref('users/' + user + '/jobs/' + this.navParams.get('key') + '/accepted/').on('child_added',(accJobs)=>{
+            firebase.database().ref('users/' + user + '/jobs/myJobs/' + this.navParams.get('key') + '/accepted/').on('child_added',(accJobs)=>{
                 this.accBool = true;
                 this.acceptedList.push({'fName': accJobs.val().name, 'uKey': accJobs.val().user, 'path': accJobs.val().path});
             });
@@ -90,16 +90,23 @@ export class ViewJobComponent{
     }
     acceptUser(uKey, fullName){
         let pathKey =  firebase.database().ref('users/' + this.curUser + '/jobs/' + this.navParams.get('key') + '/accepted').push().key;
-        firebase.database().ref('users/' + this.curUser + '/jobs/' + this.navParams.get('key') + '/accepted/' + pathKey).set({
+        firebase.database().ref('users/' + this.curUser + '/jobs/myJobs/' + this.navParams.get('key') + '/accepted/' + pathKey).set({
             name: fullName,
             path: pathKey,
             user: uKey
         });
-        firebase.database().ref('users/' + this.curUser + '/jobs/' + this.navParams.get('key') + '/requests/' + uKey).remove();
+        firebase.database().ref('users/' + uKey + '/jobs/accepted/' + this.navParams.get('key')).set({
+            title: this.title,
+            cost: this.cost,
+            user: this.curUser
+        });
+        firebase.database().ref('users/' + uKey + '/jobs/requests/' + this.navParams.get('key')).remove();
+        firebase.database().ref('users/' + this.curUser + '/jobs/myJobs/' + this.navParams.get('key') + '/requests/' + uKey).remove();
         this.viewCtrl.dismiss();
     }
     declineUser(uKey){
-        firebase.database().ref('users/' + this.curUser + '/jobs/' + this.navParams.get('key') + '/requests/' + uKey).remove();
+        firebase.database().ref('users/' + this.curUser + '/jobs/myJobs/' + this.navParams.get('key') + '/requests/' + uKey).remove();
+        firebase.database().ref('users/' + uKey + '/jobs/requests/' + this.navParams.get('key')).remove();
     }
     completeJob(key, name, path){
         let from;
@@ -116,9 +123,8 @@ export class ViewJobComponent{
                 let allinfo = {'from':from, 'to':to, 'amount': parseInt(this.cost)};
                 this.http.transaction(allinfo).subscribe((data) => {
                     loader.dismiss();
-                    console.log("made payment from: " +  name + " " + key);
-                    console.log("To: " + this.curUser);
-                    firebase.database().ref('users/' + this.curUser + '/jobs/' + this.navParams.get('key') + '/accepted/' + path).remove();
+                    firebase.database().ref('users/' + this.curUser + '/jobs/myJobs/' + this.navParams.get('key') + '/accepted/' + path).remove();
+                    firebase.database().ref('users/' + key + '/jobs/accepted/' + this.navParams.get('key')).remove();
                     this.updateBalance(key);
                     this.viewCtrl.dismiss();
                 },
