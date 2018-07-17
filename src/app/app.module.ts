@@ -19,6 +19,7 @@ import { RequestsPage } from '../pages/requests/requests';
 import { myAcc } from '../pages/myAccount/myAcc';
 import { AccountantPage } from '../pages/accountant/accountant';
 import { DirectPayPage } from './../pages/direct-pay/direct-pay';
+import { NotificationsPage } from './../pages/notifications/notifications';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,6 +39,7 @@ import { IonicStorageModule } from '@ionic/storage';
     RequestsPage,
     AccountantPage,
     DirectPayPage,
+    NotificationsPage,
     PostsComponent,
     JobPostComponent,
     RequestComponent,
@@ -65,6 +67,7 @@ import { IonicStorageModule } from '@ionic/storage';
     RequestsPage,
     AccountantPage,
     DirectPayPage,
+    NotificationsPage,
     PostsComponent,
     JobPostComponent,
     RequestComponent,

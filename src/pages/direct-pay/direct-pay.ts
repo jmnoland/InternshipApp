@@ -26,16 +26,18 @@ export class DirectPayPage {
   }
 
   Search(){
+    let lCase = this.searchedUser.toLowerCase();
     firebase.database().ref('users/').once('value',(all)=>{
       let keys = Object.keys(all.val());
       let temp = all.val();
       for(let user in keys){
-        if(temp[keys[user]].email == this.searchedUser){
-          console.log("User Found");
+        let emailLCase = temp[keys[user]].email.toLowerCase();
+        if(emailLCase == lCase){
           this.userData = keys[user];
-          console.log(keys[user]);
           this.bool = true;
           break;
+        } else {
+          this.bool = false;
         }
       }
     });
